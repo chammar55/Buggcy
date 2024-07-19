@@ -535,7 +535,7 @@
 .tensti-main-div {
   position: relative;
   width: 100%;
-  height: 120vh;
+  height: 800px;
   background-image: url("img/testimo-Background .png");
 }
 
@@ -613,4 +613,8 @@
 /* ************************** Sign up*********************************** */
 .signUp-div {
   display: flex;
+}
+.signUp-text {
+  display: flex;
+  flex-direction: column;
 }
