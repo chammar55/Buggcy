@@ -214,7 +214,6 @@
 .hero-img {
   position: absolute;
   z-index: 1;
-  width: 654px;
   top: -78px;
 }
 .elipse-shape {
@@ -224,7 +223,7 @@
 .hero-review-position {
   position: absolute;
   z-index: 2;
-  top: 354px;
+  top: 335px;
   left: 30px;
 }
 .hero-review {
@@ -237,6 +236,7 @@
   padding: 18px;
   border-radius: 15px;
   background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .hero-review-text {
   display: flex;
@@ -332,11 +332,13 @@
   display: flex;
   margin-top: 30px;
   gap: 32px;
+  /* width: 100%; */
 }
 .card {
+  /* width: 100%; */
   position: relative;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* gap: 12px; */
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -347,7 +349,8 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  padding: 18px 60px 18px 18px;
+  /* padding: 18px 60px 18px 18px; */
+  padding: 18px 30px;
 }
 .card-text-div h3 {
   font-size: 20px;
@@ -406,4 +409,208 @@
   border-radius: 11px;
   background-color: #3cda5f;
   color: white;
+}
+
+.card-img svg {
+  object-fit: contain;
+}
+
+/* ******************************* Medical Products ******************************************* */
+.medi-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+}
+.medi-card-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.medi-card {
+  position: relative;
+  margin-top: 32px;
+}
+.medi-card img {
+  width: 100%;
+}
+
+.medi-card-text {
+  position: absolute;
+  left: 56px;
+  top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.medi-card-text p {
+  font-size: 12px;
+  background-color: #f2971f;
+  color: white;
+  padding: 2px 10px;
+  width: 80px;
+  border-radius: 8px;
+}
+.medi-card2-p {
+  visibility: hidden;
+}
+
+.medi-card-text div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.medi-card-text div h3 {
+  font-size: 28px;
+  font-weight: 500;
+}
+.medi-card-text-btn {
+  font-size: 15px;
+  background-color: #184363;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 109px;
+}
+
+.medi-card-text-btn span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* **************************** big city ************************************* */
+.big-city {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 100px;
+}
+
+.big-city-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+.big-city-img {
+  width: 500px;
+}
+.big-city-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.big-city-text h3 {
+  font-size: 73px;
+  font-weight: 500;
+}
+
+.big-city-door span {
+  color: red;
+}
+.big-city-tagline {
+  font-size: 24px;
+}
+
+/* ************************** testimonial ***************************************** */
+
+.testimonial {
+  margin-top: 100px;
+}
+.test-back {
+  /* object-fit: cover; */
+  width: 100%;
+}
+.tensti-main-div {
+  position: relative;
+  width: 100%;
+  height: 120vh;
+  background-image: url("img/testimo-Background .png");
+}
+
+.testi-text {
+  /* position: absolute; */
+  /* left: 50px; */
+  /* top: 50px; */
+  left: 382px;
+  top: 115px;
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+}
+
+.testi-text h3 {
+  font-size: 48px;
+  font-weight: 400;
+}
+.testi-btn {
+  display: flex;
+  justify-content: space-between;
+  /* width: 200%; */
+}
+.testiOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+.testi-review {
+  display: flex;
+  gap: 18px;
+  margin-top: 32px;
+  justify-content: center;
+}
+.testi-review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  padding: 41px;
+  gap: 46px;
+  width: 323px;
+  border-radius: 8px;
+  height: 358px;
+  /* width: 300px; */
+}
+.testi-main-review {
+  font-size: 24px;
+  font-weight: 400;
+}
+.testi-about {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.testi-about div {
+  display: flex;
+  flex-direction: column;
+}
+.testi-review-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.testi-review-job {
+  font-size: 14px;
+  font-weight: 400;
+}
+.increase-card-length {
+  height: 394px;
+}
+
+/* ************************** Sign up*********************************** */
+.signUp-div {
+  display: flex;
 }
