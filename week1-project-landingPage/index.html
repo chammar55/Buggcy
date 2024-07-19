@@ -21,7 +21,31 @@
         </ul>
       </nav>
       <div class="icon-div">
-        <button class="nav-btn">Shop Now</button>
+        <!-- <button class="nav-btn " >Shop Now</button> -->
+        <div
+        class="nav-button-shadow"
+        style="
+          background: linear-gradient(
+            90deg,
+            rgba(153, 153, 153, 1) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
+          padding: 2px;
+          border-radius: 10px;
+        "
+      >
+        <div
+          style="
+            padding: 2px;
+            background-color: #3cda5f;
+            border-radius: 7px;
+            padding: 10px 20px;
+            color: white;
+          "
+        >
+          <p>ShopNow</p>
+        </div>
+      </div>
         <a href="#"
           ><ion-icon class="nav-icon" name="person-circle-outline"></ion-icon
         ></a>
@@ -53,7 +77,20 @@
             <h1 class="hero-main-heading">
               Shop smarter,
               <div>not harder.</div>
-              <span>Get it ordered.</span>
+              <div
+              style="height: 111px; overflow: hidden; position: relative ; right:15px"
+              class="hero-text-animate-container"
+            >
+              <h2
+                style="font-size: 72px; padding: 10px; text-wrap: nowrap"
+                class="hero-text-animate font-medium"
+              >
+                <span style="color: #fd273b">Get it ordered.</span>
+                <br />
+                <span style="color: #9747ff">Get it shipped.</span><br />
+                <span style="color: #2ad427">Get it delivered.</span>
+              </h2>
+            </div>
             </h1>
             <h4 class="hero-line">
               Save time, skip the lines. We've got you covered.
@@ -445,7 +482,6 @@
      </section>
     </main>
     <footer></footer>
-
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
