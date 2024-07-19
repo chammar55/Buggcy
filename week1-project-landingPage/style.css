@@ -622,9 +622,9 @@
   background-size: cover; */
   background: linear-gradient(
     to right,
-    rgba(153, 245, 173, 1),
+    rgba(153, 245, 173, 1) 0%,
     white 50%,
-    rgba(153, 245, 173, 1)
+    rgba(153, 245, 173, 1) 100%
   );
   display: flex;
   justify-content: center;
