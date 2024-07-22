@@ -1,0 +1,90 @@
+/* rem and em do not depend on html font-size in media quesries! em  
+instead, 1rem = 1em = 16px*/
+
+/* ************************************** */
+/* Below 1344px (smaller desktops) */
+/* ************************************** */
+@media (max-width: 84em) {
+}
+/* ************************************** */
+/* Below 1200px (Landscape Tablets) */
+/* ************************************** */
+@media (max-width: 75em) {
+}
+/* ************************************** */
+/* Below 944px (Landscape Tablets) */
+/* ************************************** */
+@media (max-width: 59em) {
+}
+/* ************************************** */
+/* Below 704px (smaller Tablets) */
+/* ************************************** */
+@media (max-width: 44em) {
+}
+/* ************************************** */
+/* Below 544px (Phones) */
+/* ************************************** */
+@media (max-width: 34em) {
+  /* header */
+  nav {
+    display: none;
+  }
+  /* search */
+  .search-section {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Hero section */
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  /* Trending  */
+  .pro-list ul {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Deal */
+  .deal-cards {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Medical */
+  .medi-card-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Big City */
+  .big-city-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Testimonials */
+  .testi-btn {
+    display: flex;
+    flex-direction: column;
+  }
+  .testi-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Sign Up */
+  .signUp-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* - Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+
+*/
