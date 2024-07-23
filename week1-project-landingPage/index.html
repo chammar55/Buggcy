@@ -402,7 +402,9 @@
             src="img/Polygon 1.png"
             alt="big-city-polygon"
             />
-          <div><dotlottie-player src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 500px; height: 500px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
+          <div ><dotlottie-player class="pc-big-city-lottie"  src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 500px; height: 500px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
+          <!-- for mobile -->
+          <div ><dotlottie-player class="mobile-big-city-lottie" src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
         </div>
           <div class="big-city-text">
             <h3>Big City savings,</h3>
@@ -483,10 +485,12 @@
       </div>
      </section>
     </main>
-    <footer class="footer container-background" style="display: flex; flex-direction: column;background-color: #0a2640;max-width: 1440px; max-height: 466px;" >
-      <div class=" " style="  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; color: white;">
+
+    <footer class="footer container-background" >
+
+      <div class="footer-grid " >
       <!-- 1st col -->
-      <div style=" display: flex; flex-direction: column; gap: 10px;">
+      <div class="bottom-divider" style=" display: flex; flex-direction: column; gap: 10px;">
         <h3 style="font-size: 51px; font-weight: 500; ">Quick <span class="color-primary">Pik</span></h3>
         <div style="display: flex; flex-direction: column; grid-area: 11px;">
             <div class="footer-1st-col" style="margin-bottom: 11px;">
@@ -501,8 +505,9 @@
           </div>
         </div>
       </div>
+      
       <!-- 2nd col -->
-      <div class="footer-2nd-col">
+      <div class="footer-2nd-col bottom-divider">
         <h3 style="margin-bottom: 10px; display: flex;flex-direction: column; justify-content: center; align-items: center;">Quick Links</h3>
         <ul style="list-style: none; display: flex;flex-direction: column; justify-content: center; align-items: center;">
           <li><a href="#">Home</a></li>
@@ -514,7 +519,7 @@
         </ul>
       </div>
       <!-- 3rd col -->
-      <div class="footer-3rd-col" style="list-style: none; display: flex;flex-direction: column;  align-items: center;">
+      <div class="footer-3rd-col bottom-divider" style="list-style: none; display: flex;flex-direction: column;  align-items: center;">
         <h3 style="margin-bottom: 10px;">Locations</h3>
         <ul style="list-style: none; display: flex;flex-direction: column; justify-content: center; align-items: center;">
          <li>Mumbai</li>
@@ -528,10 +533,12 @@
       <!-- 4th col -->
       <div><dotlottie-player src="https://lottie.host/22775303-11cf-4ba5-8b68-b32fde40e8cc/uJkQ0cWYhN.json" background speed="1" style="width: 308px; height: 234px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
     </div>
+
       <!-- Rights -->
-       <div style="font-size: 24px;font-weight: 500; display: flex; justify-content: center; align-items: center;color: white; margin-bottom: 32px;margin-top: 93px;">
+       <div class="footer-rights">
         <p>@All Rights Reserved QuickPik</p>
        </div>
+
     </footer>
     <script
       type="module"

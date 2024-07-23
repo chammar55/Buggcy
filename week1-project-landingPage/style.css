@@ -696,7 +696,9 @@ body {
   line-height: 32px;
   text-align: left;
 }
-
+.mobile-big-city-lottie {
+  display: none;
+}
 /* ************************** testimonial ***************************************** */
 
 .testimonial {
@@ -721,7 +723,7 @@ body {
   top: 115px;
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  max-width: 1200px;
 }
 
 .testi-text h3 {
@@ -855,6 +857,11 @@ body {
 
 .footer {
   padding: 85px 72px 0px 150px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0a2640;
+  max-width: 1440px;
+  height: 466px;
 }
 /* .footer-1st-col {
   display: flex;
@@ -879,6 +886,11 @@ body {
   gap: 11px;
   margin-left: 148px;
 }*/
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: white;
+}
 .footer-1st-col-logos {
   display: flex;
   gap: 18px;
@@ -903,4 +915,15 @@ body {
 .footer-2nd-col ul a {
   text-decoration: none;
   color: white;
+}
+
+.footer-rights {
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 32px;
+  margin-top: 93px;
 }
