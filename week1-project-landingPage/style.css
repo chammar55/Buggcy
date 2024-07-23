@@ -504,7 +504,7 @@ body {
   align-items: center;
   /* gap: 12px; */
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 10px;
   max-width: 607.75;
   max-height: 304.88px;
 }
@@ -583,8 +583,9 @@ body {
 }
 
 .card-img img {
-  width: 302.88px;
-  height: 302.88px;
+  width: 304px;
+  height: 304px;
+  transform: translateY(1px);
   object-fit: contain;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
