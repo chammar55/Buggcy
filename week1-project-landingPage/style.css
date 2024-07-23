@@ -70,7 +70,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  /* 4.8rem = 76.8px */
   padding: 13px 4.8rem;
 }
 .logo {
@@ -288,6 +288,12 @@ body {
 .hero-main-heading span {
   display: block;
   color: red;
+}
+.hero-text-animate-container {
+  height: 111px;
+  overflow: hidden;
+  position: relative;
+  right: 15px;
 }
 
 .hero-btn {
@@ -796,15 +802,9 @@ body {
 }
 
 /* ************************** Sign up*********************************** */
+
 .signUp-div {
-  display: flex;
   margin: 32px 0px;
-}
-.signUp-div {
-  /* position: relative; */
-  /* background-image: url("img/signUp-background.png");
-  background-repeat: no-repeat;
-  background-size: cover; */
   background: linear-gradient(
     to right,
     rgba(153, 245, 173, 1) 0%,

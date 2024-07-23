@@ -39,7 +39,7 @@ instead, 1rem = 1em = 16px*/
     display: none;
   }
   .header {
-    /* width: 480px; */
+    padding: 13px 28px;
   }
   .mobile-nav-btn {
     display: block;
@@ -118,14 +118,15 @@ instead, 1rem = 1em = 16px*/
   }
   .hero-img,
   .elipse-shape svg {
-    max-width: 400px;
-    transform: translateY(-20%);
+    max-width: 360px;
+    transform: translate(3%, 0%);
   }
   .hero-img {
     top: 20px;
   }
   .hero-review-position {
-    top: 218px;
+    top: 272px;
+    left: 12px;
   }
 
   /* Trending ****************************************** */
@@ -146,6 +147,10 @@ instead, 1rem = 1em = 16px*/
     grid-template-columns: 1fr 1fr;
     gap: 5px;
   }
+  .proListItemsName img {
+    width: 166px;
+    /* height: 200px; */
+  }
   /* Deal ***********************************************/
   .deal-of-week {
     margin-bottom: 200px;
@@ -153,6 +158,9 @@ instead, 1rem = 1em = 16px*/
   }
   .deal-Heading {
     gap: 10px;
+  }
+  .deal-small-row:nth-last-child(-n + 2) {
+    display: none;
   }
   .deal-Heading h1 {
     width: 150px;
@@ -183,7 +191,7 @@ instead, 1rem = 1em = 16px*/
     flex-direction: column;
   }
   .medi-card img {
-    width: 400px;
+    width: 370px;
   }
   .medi-card-text p {
     font-size: 16px;
@@ -297,13 +305,9 @@ instead, 1rem = 1em = 16px*/
   .signUp-div {
     display: flex;
     flex-direction: column-reverse;
-    height: 75vh;
+    height: 690px;
   }
   .signUp-div {
-    /* position: relative; */
-    /* background-image: url("img/signUp-background.png");
-    background-repeat: no-repeat;
-    background-size: cover; */
     background: linear-gradient(
       to right,
       rgba(153, 245, 173, 1) 0%,
@@ -326,7 +330,7 @@ instead, 1rem = 1em = 16px*/
   /* Footer************************************************ */
   .footer {
     padding: 20px;
-    height: 100vh;
+    height: 950px;
   }
   .footer-grid {
     display: grid;
