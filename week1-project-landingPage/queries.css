@@ -25,36 +25,192 @@ instead, 1rem = 1em = 16px*/
 /* Below 544px (Phones) */
 /* ************************************** */
 @media (max-width: 34em) {
-  /* header */
+  main {
+    /* padding: 0px 145px; */
+  }
+  .container {
+    padding: 10px;
+  }
+  /* header ************************************************/
   nav {
     display: none;
   }
+  .icon-div {
+    display: none;
+  }
+  .header {
+    /* width: 480px; */
+  }
+  .mobile-nav-btn {
+    display: block;
+    display: flex;
+    align-items: center;
+  }
   /* search */
   .search-section {
-    display: flex;
+    /* display: flex; */
+    display: none;
     flex-direction: column;
   }
-  /* Hero section */
+  .category {
+    width: 130%;
+    display: flex;
+    justify-content: start;
+  }
+  .search-flex-div {
+    width: 130%;
+  }
+  /* Hero section **********************************************/
   .hero {
     grid-template-columns: 1fr;
+    /* transform: translateY(-7%); */
+    height: 70vh;
+    margin-bottom: 153px;
   }
-  /* Trending  */
+  .hero-text-div {
+    margin-top: 0;
+  }
+  .hero-discount {
+    font-size: 12px;
+    width: 50%;
+  }
+  .hero-line {
+    font-size: 18px;
+  }
+  .hero-btn {
+    border: 2px;
+    font-weight: 500;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #3cda5f;
+    width: 130px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+  }
+  .hero-main-heading {
+    font-size: 50px;
+  }
+  .hero-text-animate-container span {
+    font-size: 50px;
+  }
+  .hero-text-animate-container {
+    height: 83px;
+  }
+  @keyframes textanimation {
+    0%,
+    25% {
+      transform: translateY(0);
+    }
+    33.33%,
+    58.33% {
+      transform: translateY(-32%);
+    }
+    66.66%,
+    91.66% {
+      transform: translateY(-63%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .hero-img,
+  .elipse-shape svg {
+    max-width: 400px;
+    transform: translateY(-20%);
+  }
+  .hero-img {
+    top: 20px;
+  }
+  .hero-review-position {
+    top: 218px;
+  }
+
+  /* Trending ****************************************** */
+  .trend-product {
+    margin-bottom: 200px;
+    height: 100vh;
+  }
+  .pro-heading h1 {
+    font-size: 18px;
+    width: 200px;
+  }
+  .pro-svg {
+    left: 135px;
+    bottom: -3px;
+  }
   .pro-list ul {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
   }
-  /* Deal */
+  /* Deal ***********************************************/
+  .deal-of-week {
+    margin-bottom: 200px;
+    height: 100vh;
+  }
+  .deal-Heading {
+    gap: 10px;
+  }
+  .deal-Heading h1 {
+    width: 150px;
+    font-size: 18px;
+  }
   .deal-cards {
     display: flex;
     flex-direction: column;
   }
-  /* Medical */
+  .card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 234px;
+  }
+  /* Medical****************************************** */
+  .medi-heading {
+    width: 200px;
+  }
+  .medical {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+  }
   .medi-card-div {
     display: flex;
     flex-direction: column;
   }
+  .medi-card img {
+    width: 400px;
+  }
+  .medi-card-text p {
+    font-size: 16px;
+    width: 130px;
+  }
+  .medi-card-text {
+    left: 18px;
+    top: 26px;
+    gap: 8px;
+  }
+  .medi-card-text div h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .medi-card-text-btn {
+    font-size: 12px;
+    background-color: #184363;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 109px;
+  }
 
-  /* Big City */
+  /* Big City********************************************** */
   .big-city-div {
     display: flex;
     flex-direction: column;
