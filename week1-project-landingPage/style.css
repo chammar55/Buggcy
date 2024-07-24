@@ -716,10 +716,11 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 1 calc(50% - 24px);
-    align-items: center;
+    /* align-items: center; */
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 607.75;
+    align-items: start;
     /* height: 304.88px; */
   }
   .deal-Heading {
