@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css" />
     <!-- For lottie animation -->
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <link rel="stylesheet" href="queries.css" />
+    <!-- <link rel="stylesheet" href="queries.css" /> -->
     <title>Shopping Website</title>
   </head>
   <body >
@@ -41,12 +41,14 @@
         ><ion-icon class="nav-icon" name="person-circle-outline"></ion-icon
           ></a>
           <a href="#"><ion-icon class="nav-icon" name="cart"></ion-icon></a>
-        </div>
+        
       </div>
-      <!-- Mobile nav button -->
-       <div class="mobile-nav-btn">
-        <ion-icon name="menu-outline"></ion-icon>
-       </div>
+    </div>
+    <!-- Mobile nav button -->
+    <div class="mobile-nav-btn">
+     <ion-icon name="menu-outline"></ion-icon>
+    </div>
+      
     </header>
     <main >
       <!-- Search section -->
@@ -66,7 +68,8 @@
       </section>
 
       <!-- Hero Section -->
-      <section class="container">
+      <section class="container ">
+        
         <div class="hero">
           <div class="hero-text-div">
             <h4 class="hero-discount">30% Off on groceries</h4>
@@ -357,7 +360,7 @@
         <div class="medi-card-div">
           <!-- medi card 1 -->
           <div class="medi-card">
-            <img src="img/medi-banner-1.png" alt="medibanner1" />
+            <img src="img/medi-banner-1.png" alt="">
             <div class="medi-card-text">
               <p>From $0.99</p>
               <div>
@@ -374,10 +377,9 @@
           </div>
           <!-- medi card 2 -->
           <div class="medi-card">
-            <img src="img/medi-banner-2.png" alt="mediBanner2" />
-
+<img src="img/medi-banner-2.png" alt="">
             <div class="medi-card-text">
-              <p class="medi-card2-p">From $0.99</p>
+              <p >From $0.99</p>
               <div>
                 <h3>Medicine Pack</h3>
                 <h3>Get it now 45% Off</h3>
@@ -406,6 +408,8 @@
           <div ><dotlottie-player class="pc-big-city-lottie"  src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 500px; height: 500px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
           <!-- for mobile -->
           <div ><dotlottie-player class="mobile-big-city-lottie" src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
+          <!-- for small mobile -->
+          <div ><dotlottie-player class="smallmobile-big-city-lottie" src="https://lottie.host/6656b3b2-765a-4d36-823c-3a55c25fd066/YQfn7CJxUn.json"  speed="1" style="width: 250px; height: 250px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
         </div>
           <div class="big-city-text">
             <h3>Big City savings,</h3>
@@ -417,12 +421,11 @@
       </section>
 
       <!-- Testimonial section-->
-       <section class="container-background testimonial">
+       <section class="container testimonial">
         <div class="tensti-main-div">
           <!-- <img class="test-back" src="img/testimo-Background .png" alt=""> -->
 
-          <div class="container testiOverlay">
-
+        
             <div class=" testi-text">
               <!-- testimonial text -->
               <div>
@@ -464,17 +467,18 @@
             <div><p class="testi-review-name">Harry brige</p><p class="testi-review-job">Team Leader @ Gryffindor</p></div>
         </div> 
       </div>
- </div>
+        </div>
       
     </section>
 
     <!-- sign up section-->
      <section class="container-background sign-up">
-      <div class="signUp-div">
+      <div class=" signUp-div">
         <div class="signup-main">
 
             <img class="signup-main-img" src="img/signUp-person.png" alt="">
           </div>
+
           <div class="signup-text-div">
             <div class="signUp-text">
               <h3>SignUp For Exclusive Offers</h3>
@@ -492,7 +496,7 @@
       <div class="footer-grid " >
       <!-- 1st col -->
       <div class="bottom-divider" style=" display: flex; flex-direction: column; gap: 10px;">
-        <h3 style="font-size: 51px; font-weight: 500; ">Quick <span class="color-primary">Pik</span></h3>
+        <h3 class="footer-main-heading">Quick <span class="color-primary">Pik</span></h3>
         <div style="display: flex; flex-direction: column; grid-area: 11px;">
             <div class="footer-1st-col" style="margin-bottom: 11px;">
             <p >Shop smarter,not harder.</p>
@@ -532,7 +536,7 @@
         </ul>
       </div>
       <!-- 4th col -->
-      <div><dotlottie-player src="https://lottie.host/22775303-11cf-4ba5-8b68-b32fde40e8cc/uJkQ0cWYhN.json" background speed="1" style="width: 308px; height: 234px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
+      <div class="footer-svg" ><dotlottie-player src="https://lottie.host/22775303-11cf-4ba5-8b68-b32fde40e8cc/uJkQ0cWYhN.json" background speed="1" style="width: 270px; height: 234px" direction="1" playMode="normal" loop autoplay></dotlottie-player></div>
     </div>
 
       <!-- Rights -->
