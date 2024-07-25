@@ -272,7 +272,9 @@ body {
 
 .search-icon {
   color: white;
-  size: 15px;
+  size: 21px;
+  width: 25px;
+  height: 28px;
 }
 
 @media (max-width: 555px) {
@@ -300,7 +302,6 @@ body {
   /* flex-wrap: wrap; */
   justify-content: space-between;
   margin-top: 64px;
-  display: none;
 }
 
 .hero-discount {
@@ -374,7 +375,8 @@ body {
   z-index: 2;
   top: 335px;
   left: 30px;
-  width: 439px;
+  max-width: 439px;
+  height: 95px;
 }
 .hero-review {
   display: flex;
@@ -382,7 +384,7 @@ body {
   align-items: center;
   gap: 8px;
   max-width: 439px;
-  /* max-height: 95px; */
+  height: 95px;
   padding: 18px;
   border-radius: 15px;
   background-color: white;
@@ -459,6 +461,7 @@ body {
 @media (max-width: 1219px) {
   .hero-img-div {
     position: relative;
+    bottom: -24px;
   }
   .hero-img-div .hero-img {
     position: absolute;
@@ -475,10 +478,10 @@ body {
     padding: 15px;
   }
 
-  .hero-img-div .elipse-shape svg {
+  .hero-img-div .elipse-shape img {
     position: absolute;
     width: 450px;
-    top: 0px;
+    top: 83px;
   }
   .hero-main-heading {
     font-size: 50px;
@@ -492,14 +495,30 @@ body {
   .hero-line {
     flex-wrap: wrap;
   }
+  .hero-review-position {
+    position: absolute;
+    z-index: 2;
+    top: 335px;
+    left: 12px;
+    max-width: 439px;
+  }
+  .hero-review {
+    max-width: 378px;
+  }
 }
 @media (max-width: 933px) {
+  .hero {
+    gap: 10px;
+  }
+  .hero-mediacontainer {
+    padding: 0 20px;
+  }
   .hero-img-div {
     position: relative;
   }
   .hero-img-div .hero-img {
     position: absolute;
-    width: 400px;
+    width: 450px;
     top: 0px;
   }
   .hero-review {
@@ -512,15 +531,74 @@ body {
     padding: 15px;
   }
 
-  .hero-img-div .elipse-shape svg {
+  .hero-img-div .elipse-shape img {
     position: absolute;
-    width: 380px;
-    top: 0px;
+    width: 420px;
+    top: 83px;
+  }
+  .hero-review-position {
+    top: 302px;
+    left: 16px;
   }
 }
-@media (max-width: 750px) {
+@media (max-width: 870px) {
   .hero {
     flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 470px) {
+  .hero {
+    margin-top: 20px;
+  }
+  .hero-text-div {
+    margin-top: 0px;
+  }
+  .hero-discount {
+    font-size: 12px;
+    max-width: 200px;
+    padding: 10px;
+  }
+  .hero-main-heading {
+    font-size: 40px;
+  }
+  .hero-text-animate-container h2 span {
+    font-size: 40px;
+  }
+  .hero-text-animate-container {
+    height: 68px;
+  }
+  .hero-mediacontainer {
+    padding: 0 20px;
+  }
+  .hero-img-div {
+    position: relative;
+  }
+  .hero-img-div .hero-img {
+    position: absolute;
+    max-width: 325px;
+    top: 0px;
+  }
+  .hero-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    max-width: 350px;
+    /* max-height: 95px; */
+    padding: 15px;
+  }
+
+  .hero-img-div .elipse-shape img {
+    position: absolute;
+    max-width: 325px;
+    top: 40px;
+  }
+  .hero-review-position {
+    top: 218px;
+    left: 16px;
   }
 }
 
@@ -564,9 +642,14 @@ body {
   margin: 9px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 870px) {
   .trend-product {
-    margin-top: 600px;
+    margin-top: 525px;
+  }
+}
+@media (max-width: 470px) {
+  .trend-product {
+    margin-top: 400px;
   }
 }
 
@@ -587,28 +670,38 @@ body {
   gap: 24px;
 }
 
-.deal-Heading div {
+.deal-Heading .timer-cards {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* gap: 12px; */
-  margin-right: 12px;
-  border-radius: 5px;
+  gap: 12px;
+  /* margin-right: 12px; */
 }
 
-.deal-small-row {
+.timer-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.timer-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #3cda5f;
+  justify-content: center;
+  font-weight: 500;
   color: white;
-  padding: 8px;
-}
+  background-color: #3cda5f;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
 
-.deal-small-row h4,
-.deal-small-row h5 {
-  margin: 0px;
+  h3 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 10px;
+  }
 }
 
 .deal-cards {
@@ -617,6 +710,7 @@ body {
   justify-content: center;
   margin-top: 30px;
   gap: 24px;
+  width: 100%;
 }
 .card {
   position: relative;
@@ -625,16 +719,25 @@ body {
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  width: 607.75;
-  /* height: 304.88px; */
+  max-width: 607.75px;
+  height: 304.88px;
+}
+
+.card-img {
+  width: 304px;
+  /* min-height: 304px; */
+  /* transform: translateY(1px); */
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .card-text-div {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* padding: 18px 60px 18px 18px; */
   padding: 18px 30px;
+  width: 100%;
 }
 .card-text-div h3 {
   font-size: 20px;
@@ -694,21 +797,15 @@ body {
 
 .card-sale {
   position: absolute;
+  font-size: 12px;
+  font-weight: 500;
   left: 12px;
   top: 12px;
   padding: 2px 5px;
   border-radius: 11px;
   background-color: #3cda5f;
   color: white;
-}
-
-.card-img img {
-  width: 304px;
-  height: 304px;
-  transform: translateY(1px);
-  object-fit: contain;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  z-index: 1;
 }
 
 @media (max-width: 600px) {
@@ -716,22 +813,16 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 1 calc(50% - 24px);
-    /* align-items: center; */
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+
     width: 607.75;
     align-items: start;
-    /* height: 304.88px; */
+    height: auto;
   }
   .deal-Heading {
     display: flex;
     flex-direction: column;
   }
-  .deal-Heading div {
-    display: flex;
-    gap: 12px;
-    margin-right: 0px;
-  }
+
   .card-img {
     width: 100%;
     height: auto;
@@ -739,11 +830,10 @@ body {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 0px;
   }
-  .card-img img {
+  .card-img {
     width: 100%;
     height: auto;
     transform: translateY(0px);
-    /* object-fit: contain; */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 0px;
