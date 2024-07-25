@@ -64,6 +64,14 @@ body {
   color: #0a2640;
 }
 
+.primary-text {
+  color: #0a2640;
+}
+
+.secondary-text {
+  color: #184363;
+}
+
 /* ******************************** Header ******************************************** */
 
 .header {
@@ -145,7 +153,7 @@ body {
 .main-nav-link:visited {
   display: inline-block;
   text-decoration: none;
-  color: #333;
+  /* color: #333; */
   font-weight: 500;
   font-size: 16px;
   transition: all 0.3s;
