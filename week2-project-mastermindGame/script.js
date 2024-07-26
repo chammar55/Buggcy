@@ -77,6 +77,9 @@ function clickBtn(num) {
   if (sameIndexCount === 4 && differentIndexCount === 0) {
     document.querySelector(".youWin").style.display = "block";
     document.querySelector(".solution").style.display = "block";
+  } else if (num === 10) {
+    document.querySelector(".youLost").style.display = "block";
+    document.querySelector(".solution").style.display = "block";
   } else {
     rowCircleColors = ["", "", "", ""];
     sameIndexCount = 0;
