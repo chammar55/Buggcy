@@ -140,6 +140,7 @@ function generateRandomCombination() {
   for (let i = 0; i < 4; i++) {
     secretCombination.push(getRandomColor());
   }
+  console.log("solution : " + secretCombination);
   return secretCombination;
 }
 
