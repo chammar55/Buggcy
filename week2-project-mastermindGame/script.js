@@ -1,12 +1,20 @@
 let selectedColor = "";
+var rowCircleColors = ["", "", "", ""]; // Initialize with empty strings to hold colors
+let elementColorMap = new Map(); // To track colors applied to each element
 
 function selectColor(color) {
   selectedColor = color;
 }
-function applyColor(element) {
+
+function applyColor(element, index) {
+  // Apply new color
   if (selectedColor) {
     element.style.backgroundColor = selectedColor;
+    rowCircleColors[index] = selectedColor; // Update color at specific index
+    elementColorMap.set(element, selectedColor);
   }
+
+  console.log(rowCircleColors);
 }
 
 document.querySelector(".showRules").addEventListener("click", function () {
@@ -18,13 +26,107 @@ document.querySelector(".showRules").addEventListener("click", function () {
   }
 });
 
+//   const li = document.createElement("li");
+//   li.classList.add("color1");
+//   li.appendChild(document.createTextNode("hello"));
+//   const test = document.querySelector(".solution");
+//   test.appendChild(li);
 function clickBtn(num) {
-  console.log(`click Button row ${num}`);
-  //   const li = document.createElement("li");
-  //   li.classList.add("color1");
-  //   li.appendChild(document.createTextNode("hello"));
-  //   const test = document.querySelector(".solution");
-  //   test.appendChild(li);
+  const result = compareArrays(rowCircleColors, secretCombination);
+  console.log(`Same index: ${result.sameIndexCount}`);
+  console.log(`Different index: ${result.differentIndexCount}`);
+
+  //   apply colors to mastermind review
+  const masterReviews = [
+    document.querySelector(`.masterReview${num} .review1`),
+    document.querySelector(`.masterReview${num} .review2`),
+    document.querySelector(`.masterReview${num} .review3`),
+    document.querySelector(`.masterReview${num} .review4`),
+  ];
+
+  //   check rowCircleColors must be filled
+
+  if (rowCircleColors.every((color) => color !== "")) {
+    console.log("All colors are filled:", rowCircleColors);
+    // Additional logic can be added here if needed
+  } else {
+    console.log("Not all colors are filled yet.");
+    sameIndexCount = 0;
+    differentIndexCount = 0;
+    return;
+  }
+
+  if (sameIndexCount > 0 || differentIndexCount > 0) {
+    for (let i = 0; i < sameIndexCount; i++) {
+      if (masterReviews[i]) {
+        masterReviews[i].style.backgroundColor = "green";
+      }
+    }
+    for (
+      let i = sameIndexCount;
+      i < masterReviews.length && i - sameIndexCount < differentIndexCount;
+      i++
+    ) {
+      if (masterReviews[i]) {
+        // Ensure the element exists
+        masterReviews[i].style.backgroundColor = "yellow";
+      }
+    }
+  }
+
+  if (sameIndexCount === 4 && differentIndexCount === 0) {
+    document.querySelector(".youWin").style.display = "block";
+    document.querySelector(".solution").style.display = "block";
+  } else {
+    rowCircleColors = ["", "", "", ""];
+    sameIndexCount = 0;
+    differentIndexCount = 0;
+
+    const rowNum = document.getElementById(`row${num}`);
+    rowNum.classList.add("disabled");
+    const nextRowNum = document.getElementById(`row${num + 1}`);
+    nextRowNum.classList.remove("disabled");
+  }
+}
+
+var sameIndexCount = 0;
+var differentIndexCount = 0;
+function compareArrays(rowCircleColors, secretCombination) {
+  if (rowCircleColors.length !== 4 || secretCombination.length !== 4) {
+    throw new Error("Both arrays must have exactly 4 elements.");
+  }
+
+  const secretCombinationMap = {};
+
+  // First pass: Count same index matches and build the secret combination map
+  for (let i = 0; i < 4; i++) {
+    if (rowCircleColors[i] === secretCombination[i]) {
+      sameIndexCount++;
+    } else {
+      // Build the map only for elements that are not in the same index
+      if (secretCombinationMap[secretCombination[i]]) {
+        secretCombinationMap[secretCombination[i]]++;
+      } else {
+        secretCombinationMap[secretCombination[i]] = 1;
+      }
+    }
+  }
+
+  // Second pass: Count different index matches
+  for (let i = 0; i < 4; i++) {
+    if (
+      rowCircleColors[i] !== secretCombination[i] &&
+      secretCombinationMap[rowCircleColors[i]]
+    ) {
+      differentIndexCount++;
+      secretCombinationMap[rowCircleColors[i]]--;
+    }
+  }
+
+  return {
+    sameIndexCount,
+    differentIndexCount,
+  };
 }
 
 // random geerate solution
@@ -33,57 +135,27 @@ function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+var secretCombination = [];
 function generateRandomCombination() {
-  const combination = [];
   for (let i = 0; i < 4; i++) {
-    combination.push(getRandomColor());
+    secretCombination.push(getRandomColor());
   }
-  return combination;
+  return secretCombination;
 }
 
 function applyCombinationToSolution() {
   const solutionCircles = document.querySelectorAll(".solution .circle");
-  const combination = generateRandomCombination();
+  const secretCombination = generateRandomCombination();
   solutionCircles.forEach((circle, index) => {
-    circle.style.backgroundColor = combination[index];
+    circle.style.backgroundColor = secretCombination[index];
   });
 }
 // Apply the combination to the solution circles on page load
 window.onload = applyCombinationToSolution;
 
-// Get colors from circles in a row
+// // Get colors from circles in a row
 // function getRowColors(rowId) {
 //   const row = document.getElementById(rowId);
 //   const circles = row.querySelectorAll(".circle");
 //   return Array.from(circles).map((circle) => circle.style.backgroundColor);
-// }
-
-//  Compare applied colors with the solution
-// function checkRow(rowId) {
-//   const rowColors = getRowColors(rowId);
-//   const solutionColors = getSolutionColors();
-//   const match = rowColors.every(
-//     (color, index) => color === solutionColors[index]
-//   );
-
-//   const reviewDivs = document.querySelectorAll(
-//     `#${rowId} .masterReview .review`
-//   );
-//   reviewDivs.forEach(
-//     (div) => (div.style.backgroundColor = match ? "green" : "red")
-//   );
-// }
-
-// Get the colors from the solution section
-// function getSolutionColors() {
-//   const solutionCircles = document.querySelectorAll(".solution .circle");
-//   return Array.from(solutionCircles).map(
-//     (circle) => circle.style.backgroundColor
-//   );
-// }
-// Handle the check button click for a specific row
-// function clickBtn(num) {
-//   const rowId = `row${num}`;
-//   console.log(`Click Button row ${num}`);
-//   checkRow(rowId);
 // }
