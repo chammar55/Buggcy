@@ -9,8 +9,10 @@ var stickyPoint = 100; // Change this value to the number of pixels you want to 
 function checkSticky() {
   if (window.pageYOffset > stickyPoint) {
     stickyDiv.classList.add("sticky");
+    stickyDiv.style.backgroundColor = "#dfdfdf";
   } else {
     stickyDiv.classList.remove("sticky");
+    stickyDiv.style.backgroundColor = "white";
   }
 }
 
