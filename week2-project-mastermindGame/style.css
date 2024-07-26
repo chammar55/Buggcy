@@ -1,6 +1,24 @@
 body {
   background-color: #ffffff;
 }
+
+/* Sticy Navbar************************************ */
+.sticky-div {
+  padding: 10px;
+  background-color: #dfdfdf;
+
+  text-align: center;
+  margin-top: 10px;
+}
+.sticky {
+  position: fixed;
+  top: -11px; /* Adjust this value to stick below the header */
+  left: 366px;
+  /* width: 100%; */
+  z-index: 999; /* Ensure it stays below the header */
+}
+/* End of Sticy Navbar************************************ */
+
 .gameContainer {
   display: flex;
   flex-direction: column;

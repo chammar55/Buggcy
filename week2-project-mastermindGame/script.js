@@ -1,3 +1,20 @@
+// NAvbar *********************************
+window.onscroll = function () {
+  checkSticky();
+};
+
+var stickyDiv = document.getElementById("stickyDiv");
+var stickyPoint = 100; // Change this value to the number of pixels you want to scroll before sticking
+
+function checkSticky() {
+  if (window.pageYOffset > stickyPoint) {
+    stickyDiv.classList.add("sticky");
+  } else {
+    stickyDiv.classList.remove("sticky");
+  }
+}
+
+// ********************************************************8
 let selectedColor = "";
 var rowCircleColors = ["", "", "", ""]; // Initialize with empty strings to hold colors
 let elementColorMap = new Map(); // To track colors applied to each element
