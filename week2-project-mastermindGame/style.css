@@ -1,0 +1,89 @@
+body {
+  background-color: #ffffff;
+}
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.showRules {
+  cursor: pointer;
+}
+.rules {
+  width: 450px;
+  display: none;
+}
+.color1 {
+  background-color: red;
+}
+.color2 {
+  background-color: green;
+}
+.color3 {
+  background-color: blue;
+}
+.color4 {
+  background-color: yellow;
+}
+.color5 {
+  background-color: purple;
+}
+.rows-container {
+  display: flex;
+  flex-direction: column;
+}
+.circlesContainer {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.circleDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.checkBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.circle {
+  width: 40px; /* Diameter of the circle */
+  height: 40px; /* Diameter of the circle */
+  border-radius: 50%; /* Makes the shape circular */
+
+  border: 1px solid black;
+  cursor: pointer;
+}
+.masterReview {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.review {
+  width: 8px;
+  height: 8px;
+  border: 1px solid black;
+}
+
+.youLost {
+  display: none;
+}
+.youWin {
+  display: none;
+}
+.playAgain {
+  display: none;
+}
+
+.solution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* display: none; */
+}
