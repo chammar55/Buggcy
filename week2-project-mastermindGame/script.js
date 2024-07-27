@@ -198,6 +198,8 @@ document
     allowDuplicates = this.checked;
     localStorage.setItem("allowDuplicates", JSON.stringify(allowDuplicates));
   });
+
+// *********Start Old code about secret generate****************************************************
 // random geerate solution
 // function getRandomColor() {
 //   const colors = ["red", "green", "blue", "yellow", "purple"];
@@ -220,6 +222,8 @@ document
 //     circle.style.backgroundColor = secretCombination[index];
 //   });
 // }
+// *********End Old code about secret generate****************************************************
+
 // Apply the combination to the solution circles on page load
 window.onload = applyCombinationToSolution;
 
@@ -228,10 +232,3 @@ const platAgainBtn = document.querySelector(".playAgain");
 platAgainBtn.addEventListener("click", function () {
   location.reload();
 });
-
-// // Get colors from circles in a row
-// function getRowColors(rowId) {
-//   const row = document.getElementById(rowId);
-//   const circles = row.querySelectorAll(".circle");
-//   return Array.from(circles).map((circle) => circle.style.backgroundColor);
-// }
