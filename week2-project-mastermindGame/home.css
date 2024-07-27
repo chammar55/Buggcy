@@ -13,9 +13,10 @@ body {
 }
 .sticky {
   position: fixed;
-  top: -11px; /* Adjust this value to stick below the header */
-  left: 366px;
+  /* top: -11px; Adjust this value to stick below the header */
+  /* left: 366px; */
   /* width: 100%; */
+  transform: translate(-50%, -250%);
   z-index: 999; /* Ensure it stays below the header */
 }
 /* End of Sticy Navbar************************************ */
