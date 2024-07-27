@@ -9,7 +9,7 @@ var stickyPoint = 100; // Change this value to the number of pixels you want to 
 function checkSticky() {
   if (window.pageYOffset > stickyPoint) {
     stickyDiv.classList.add("sticky");
-    stickyDiv.style.backgroundColor = "#dfdfdf";
+    // stickyDiv.style.backgroundColor = "#dfdfdf";
   } else {
     stickyDiv.classList.remove("sticky");
     stickyDiv.style.backgroundColor = "white";
@@ -106,8 +106,10 @@ function clickBtn(num) {
 
     const rowNum = document.getElementById(`row${num}`);
     rowNum.classList.add("disabled");
+    rowNum.classList.remove("currentRow");
     const nextRowNum = document.getElementById(`row${num + 1}`);
     nextRowNum.classList.remove("disabled");
+    nextRowNum.classList.add("currentRow");
   }
 }
 
@@ -151,7 +153,10 @@ function compareArrays(rowCircleColors, secretCombination) {
   };
 }
 
-// random geerate solution
+// Retrieve stored value or default to true
+const storedValue = localStorage.getItem("allowDuplicates");
+let allowDuplicates = storedValue === null ? true : JSON.parse(storedValue);
+
 function getRandomColor() {
   const colors = ["red", "green", "blue", "yellow", "purple"];
   return colors[Math.floor(Math.random() * colors.length)];
@@ -159,8 +164,18 @@ function getRandomColor() {
 
 var secretCombination = [];
 function generateRandomCombination() {
-  for (let i = 0; i < 4; i++) {
-    secretCombination.push(getRandomColor());
+  const colors = ["red", "green", "blue", "yellow", "purple"];
+  if (allowDuplicates) {
+    for (let i = 0; i < 4; i++) {
+      secretCombination.push(getRandomColor());
+    }
+  } else {
+    while (secretCombination.length < 4) {
+      let color = getRandomColor();
+      if (!secretCombination.includes(color)) {
+        secretCombination.push(color);
+      }
+    }
   }
   console.log("solution : " + secretCombination);
   return secretCombination;
@@ -173,8 +188,46 @@ function applyCombinationToSolution() {
     circle.style.backgroundColor = secretCombination[index];
   });
 }
+
+// Initialize checkbox state
+document.querySelector("#toggleDuplicates").checked = allowDuplicates;
+
+document
+  .querySelector("#toggleDuplicates")
+  .addEventListener("change", function () {
+    allowDuplicates = this.checked;
+    localStorage.setItem("allowDuplicates", JSON.stringify(allowDuplicates));
+  });
+// random geerate solution
+// function getRandomColor() {
+//   const colors = ["red", "green", "blue", "yellow", "purple"];
+//   return colors[Math.floor(Math.random() * colors.length)];
+// }
+
+// var secretCombination = [];
+// function generateRandomCombination() {
+//   for (let i = 0; i < 4; i++) {
+//     secretCombination.push(getRandomColor());
+//   }
+//   console.log("solution : " + secretCombination);
+//   return secretCombination;
+// }
+
+// function applyCombinationToSolution() {
+//   const solutionCircles = document.querySelectorAll(".solution .circle");
+//   const secretCombination = generateRandomCombination();
+//   solutionCircles.forEach((circle, index) => {
+//     circle.style.backgroundColor = secretCombination[index];
+//   });
+// }
 // Apply the combination to the solution circles on page load
 window.onload = applyCombinationToSolution;
+
+// play Again Button
+const platAgainBtn = document.querySelector(".playAgain");
+platAgainBtn.addEventListener("click", function () {
+  location.reload();
+});
 
 // // Get colors from circles in a row
 // function getRowColors(rowId) {

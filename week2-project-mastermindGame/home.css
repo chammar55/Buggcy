@@ -1,5 +1,6 @@
 body {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: antiquewhite;
 }
 
 /* Sticy Navbar************************************ */
@@ -46,6 +47,9 @@ body {
 }
 .color5 {
   background-color: purple;
+}
+.currentRow {
+  background-color: rgba(255, 255, 255, 0.479);
 }
 .rows-container {
   display: flex;
@@ -96,12 +100,24 @@ body {
 
 .youLost {
   display: none;
+  background-color: red;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 32px;
 }
 .youWin {
   display: none;
+  background-color: green;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 32px;
 }
 .playAgain {
-  display: none;
+  /* display: none; */
+  cursor: pointer;
+  font-size: 32px;
 }
 
 .solution {
