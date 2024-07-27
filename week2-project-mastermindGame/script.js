@@ -4,7 +4,7 @@ window.onscroll = function () {
 };
 
 var stickyDiv = document.getElementById("stickyDiv");
-var stickyPoint = 100; // Change this value to the number of pixels you want to scroll before sticking
+var stickyPoint = 150; // Change this value to the number of pixels you want to scroll before sticking
 
 function checkSticky() {
   if (window.pageYOffset > stickyPoint) {
