@@ -17,6 +17,8 @@ function checkSticky() {
 }
 
 // *********************** selecting color and assigning to circles *********************************8
+const storedValue = localStorage.getItem("allowDuplicates");
+let allowDuplicateCircles = storedValue === "true"; // Convert storedValue to boolean
 let selectedColor = "";
 var rowCircleColors = ["", "", "", ""]; // Initialize with empty strings to hold colors
 let elementColorMap = new Map(); // To track colors applied to each element
@@ -28,6 +30,12 @@ function selectColor(color) {
 function applyColor(element, index) {
   // Apply new color
   if (selectedColor) {
+    if (!allowDuplicateCircles) {
+      // Check if the selected color is already present in the array
+      if (rowCircleColors.includes(selectedColor)) {
+        return; // Exit the function without applying the color
+      }
+    }
     element.style.backgroundColor = selectedColor;
     rowCircleColors[index] = selectedColor; // Update color at specific index
     elementColorMap.set(element, selectedColor);
@@ -157,7 +165,8 @@ function compareArrays(rowCircleColors, secretCombination) {
 }
 
 // Retrieve stored value or default to true
-const storedValue = localStorage.getItem("allowDuplicates");
+
+console.log(storedValue);
 let allowDuplicates = storedValue === null ? true : JSON.parse(storedValue);
 
 function getRandomColor() {
