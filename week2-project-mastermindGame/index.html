@@ -10,7 +10,27 @@
     <main>
       <h1 class="wellcome">Wellcome</h1>
       <h1 class="MastermindGame">Mastermind Game</h1>
+      <label class="allowDuplicate">
+        <input type="checkbox" id="toggleDuplicates" checked /> Allow Duplicates
+      </label>
       <a href="home.html" class="playNow">Play Now</a>
     </main>
+    <script>
+      // Store alowDublicate on local Storage ***************************************************
+      const storedValue = localStorage.getItem("allowDuplicates");
+      let allowDuplicates =
+        storedValue === null ? true : JSON.parse(storedValue);
+      document.querySelector("#toggleDuplicates").checked = allowDuplicates;
+
+      document
+        .querySelector("#toggleDuplicates")
+        .addEventListener("change", function () {
+          allowDuplicates = this.checked;
+          localStorage.setItem(
+            "allowDuplicates",
+            JSON.stringify(allowDuplicates)
+          );
+        });
+    </script>
   </body>
 </html>

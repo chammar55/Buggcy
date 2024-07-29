@@ -28,3 +28,14 @@ main {
   background-color: greenyellow;
   text-decoration: none;
 }
+.allowDuplicate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  input {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -1,10 +1,10 @@
-// NAvbar *********************************
+// Stickiy Navbar *********************************
 window.onscroll = function () {
   checkSticky();
 };
 
 var stickyDiv = document.getElementById("stickyDiv");
-var stickyPoint = 200; // Change this value to the number of pixels you want to scroll before sticking
+var stickyPoint = 100;
 
 function checkSticky() {
   if (window.pageYOffset > stickyPoint) {
@@ -16,7 +16,7 @@ function checkSticky() {
   }
 }
 
-// ********************************************************8
+// *********************** selecting color and assigning to circles *********************************8
 let selectedColor = "";
 var rowCircleColors = ["", "", "", ""]; // Initialize with empty strings to hold colors
 let elementColorMap = new Map(); // To track colors applied to each element
@@ -33,9 +33,10 @@ function applyColor(element, index) {
     elementColorMap.set(element, selectedColor);
   }
 
-  console.log(rowCircleColors);
+  // console.log(rowCircleColors);
 }
 
+// Show Rules *********************************************************
 document.querySelector(".showRules").addEventListener("click", function () {
   let rulee = document.querySelector(".rules");
   if (rulee.style.display === "none" || rulee.style.display === " ") {
@@ -45,15 +46,11 @@ document.querySelector(".showRules").addEventListener("click", function () {
   }
 });
 
-//   const li = document.createElement("li");
-//   li.classList.add("color1");
-//   li.appendChild(document.createTextNode("hello"));
-//   const test = document.querySelector(".solution");
-//   test.appendChild(li);
+// **************************check button***************************************
 function clickBtn(num) {
   const result = compareArrays(rowCircleColors, secretCombination);
-  console.log(`Same index: ${result.sameIndexCount}`);
-  console.log(`Different index: ${result.differentIndexCount}`);
+  // console.log(`Same index: ${result.sameIndexCount}`);
+  // console.log(`Different index: ${result.differentIndexCount}`);
 
   //   apply colors to mastermind review
   const masterReviews = [
@@ -66,10 +63,10 @@ function clickBtn(num) {
   //   check rowCircleColors must be filled
 
   if (rowCircleColors.every((color) => color !== "")) {
-    console.log("All colors are filled:", rowCircleColors);
+    // console.log("All colors are filled:", rowCircleColors);
     // Additional logic can be added here if needed
   } else {
-    console.log("Not all colors are filled yet.");
+    // console.log("Not all colors are filled yet.");
     sameIndexCount = 0;
     differentIndexCount = 0;
     return;
@@ -96,9 +93,11 @@ function clickBtn(num) {
   if (sameIndexCount === 4 && differentIndexCount === 0) {
     document.querySelector(".youWin").style.display = "block";
     document.querySelector(".solution").style.display = "block";
+    document.querySelector(".playAgain").style.display = "block";
   } else if (num === 10) {
     document.querySelector(".youLost").style.display = "block";
     document.querySelector(".solution").style.display = "block";
+    document.querySelector(".playAgain").style.display = "block";
   } else {
     rowCircleColors = ["", "", "", ""];
     sameIndexCount = 0;
@@ -113,6 +112,9 @@ function clickBtn(num) {
   }
 }
 
+//  ***********Game Logic ********************
+// 1. Find colors with same index as solution
+// 2. Find same colors but at diff indexes
 var sameIndexCount = 0;
 var differentIndexCount = 0;
 function compareArrays(rowCircleColors, secretCombination) {
@@ -162,6 +164,7 @@ function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+// ********** Generate solution/ secret key *******************************************************
 var secretCombination = [];
 function generateRandomCombination() {
   const colors = ["red", "green", "blue", "yellow", "purple"];
@@ -199,7 +202,7 @@ document
     localStorage.setItem("allowDuplicates", JSON.stringify(allowDuplicates));
   });
 
-// *********Start Old code about secret generate****************************************************
+// *********Start of --Old code about secret generate****************************************************
 // random geerate solution
 // function getRandomColor() {
 //   const colors = ["red", "green", "blue", "yellow", "purple"];
@@ -222,12 +225,12 @@ document
 //     circle.style.backgroundColor = secretCombination[index];
 //   });
 // }
-// *********End Old code about secret generate****************************************************
+// *********End of --Old code about secret generate****************************************************
 
 // Apply the combination to the solution circles on page load
 window.onload = applyCombinationToSolution;
 
-// play Again Button
+// play Again Button************************************
 const platAgainBtn = document.querySelector(".playAgain");
 platAgainBtn.addEventListener("click", function () {
   location.reload();
