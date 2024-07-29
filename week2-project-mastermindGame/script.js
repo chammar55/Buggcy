@@ -37,6 +37,7 @@ function applyColor(element, index) {
 }
 
 // Show Rules *********************************************************
+let rulee = (document.querySelector(".rules").style.display = "none");
 document.querySelector(".showRules").addEventListener("click", function () {
   let rulee = document.querySelector(".rules");
   if (rulee.style.display === "none" || rulee.style.display === " ") {

@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
     <title>Mastermind Game</title>
     <link rel="stylesheet" href="home.css" />
   </head>
@@ -204,7 +209,7 @@
         <!-- Circle container 10 -->
         <div class="circlesContainer disabled row10" id="row10">
             <p>10.</p>
-            <div class="circleDiv">
+            <div class="circleDiv row10-adjust">
 
                 <div class="circle" onclick="applyColor(this, 0)"></div>
                 <div class="circle" onclick="applyColor(this, 1)"></div>

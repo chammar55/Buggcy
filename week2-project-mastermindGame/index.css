@@ -3,6 +3,7 @@
   padding: 0;
 }
 body {
+  font-family: "Outfit", sans-serif;
   background-color: antiquewhite;
   display: flex;
   /* flex-direction: column; */

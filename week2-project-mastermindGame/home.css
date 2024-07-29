@@ -5,6 +5,7 @@
 body {
   /* background-color: #ffffff; */
   background-color: antiquewhite;
+  font-family: "Outfit", sans-serif;
 }
 
 /* Sticy Navbar************************************ */
@@ -35,10 +36,16 @@ body {
 }
 .showRules {
   cursor: pointer;
+  background-color: white;
+  padding: 4px;
+  border-radius: 5px;
 }
 .rules {
   width: 450px;
-  display: none;
+  /* display: none; */
+  background-color: white;
+  padding: 4px;
+  border-radius: 5px;
 }
 .color1 {
   background-color: red;
@@ -72,7 +79,11 @@ body {
   p {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
+}
+.row10-adjust {
+  transform: translateX(-8px);
 }
 
 .allowDuplicate {
