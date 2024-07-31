@@ -13,12 +13,12 @@ function Navbar() {
         </Link>
       </h1>
       <h1>
-        <a className="text-3xl sm:text-5xl" href="">
+        <Link className="text-3xl sm:text-5xl" to="/CartPage">
           <ion-icon className="relative" name="cart-outline"></ion-icon>
           <p className="text-[12px] bg-red-500 rounded-full w-[10px] h-[10px] p-2 flex justify-center items-center text-white absolute  top-7 right-5 sm:top-10 sm:right-5">
             {userdata.length}
           </p>
-        </a>
+        </Link>
       </h1>
     </div>
   );

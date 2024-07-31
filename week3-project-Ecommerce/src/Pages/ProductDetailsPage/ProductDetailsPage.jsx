@@ -56,6 +56,7 @@ function ProductDetailsPage() {
         </div>
       </div>
       {/* Recommended Category********************************** */}
+
       <ProductList
         heading={`${RecommCategory}`}
         category={`${RecommCategory}`}
