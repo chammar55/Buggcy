@@ -1,5 +1,6 @@
 import React from "react";
 import useCartStore from "../Hooks/useCart";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { userdata } = useCartStore();
@@ -7,9 +8,9 @@ function Navbar() {
   return (
     <div className="flex justify-between align p-2 px-6 sm:px-5 ">
       <h1>
-        <a className="text-lg sm:text-3xl font-bold" href="">
+        <Link className="text-lg sm:text-3xl font-bold" to="/">
           Ecomm
-        </a>
+        </Link>
       </h1>
       <h1>
         <a className="text-3xl sm:text-5xl" href="">
