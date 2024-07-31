@@ -1,7 +1,6 @@
 import React from "react";
 import useSWR from "swr";
 import axios from "axios";
-import "./ProductList.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -24,13 +23,15 @@ function ProductList({ heading, category }) {
   const { data, error } = useSWR(
     `https://fakestoreapi.com/products/category/${category}`
   );
-  console.log(data);
+  // console.log(data);
 
   // if (error) return <div>Error loading data.</div>;
   if (!data) return <div>Loading...</div>;
   return (
     <div className="">
-      <h1 className="px-20 text-2xl sm:text-3xl font-bold">{heading}</h1>
+      <h1 className="capitalize px-20 text-2xl sm:text-3xl font-bold">
+        {heading}
+      </h1>
       <ul style={{ listStyleType: "none", padding: 0 }}>
         <Swiper
           slidesPerView={1}
