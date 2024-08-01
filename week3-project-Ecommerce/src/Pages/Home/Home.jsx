@@ -29,7 +29,7 @@ function Home() {
         </nav>
       </section>
       {/* Products section********************************************************************* */}
-      <section className="my-10 flex flex-col gap-10">
+      <section className="my-10 flex flex-col gap-10 max-w-[1440px] mx-auto ">
         <div id="men's-clothing" className="my-5">
           <ProductList heading="Men's Clothing" category="men's clothing" />
         </div>

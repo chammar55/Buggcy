@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./card.css";
 import Rating from "../Ratings/Rating";
 import { Link } from "react-router-dom";
 import useCartStore from "../../Hooks/useCart";
 
 const Card = ({ data }) => {
-  const { updateUserData } = useCartStore();
+  const { userdata, addToCart } = useCartStore();
   const [isDisabled, setIsDisabled] = useState(false);
 
+  useEffect(() => {
+    // Check if the item is already in the cart
+    const isItemInCart = userdata.some((item) => item.id === data.id);
+    setIsDisabled(isItemInCart);
+  }, [userdata, data.id]);
+
   const handleClick = () => {
-    updateUserData(data);
+    addToCart(data);
     // console.log(data);
     setIsDisabled(true);
     // Add your logic for adding to cart here
@@ -42,16 +48,18 @@ const Card = ({ data }) => {
             </div>
           </div>
         </Link>
-        <div
-          className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
-            isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
-          }`}
-          onClick={() => handleClick()}
-          style={{ pointerEvents: isDisabled ? "none" : "auto" }}
-        >
-          <ion-icon name="add-outline"></ion-icon>
-          <p>Add to Cart</p>
-        </div>
+        <Link to={isDisabled ? "./CartPage" : ""}>
+          <div
+            className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
+              isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
+            }`}
+            onClick={() => handleClick()}
+            style={{ pointerEvents: isDisabled ? "none" : "auto" }}
+          >
+            {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
+            <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
+          </div>
+        </Link>
       </div>
     </div>
   );
