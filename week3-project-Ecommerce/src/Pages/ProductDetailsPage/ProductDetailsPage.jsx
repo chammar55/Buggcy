@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import Rating from "../../Components/Ratings/Rating";
 import ProductList from "../../Components/ProductList/ProductList";
@@ -11,19 +11,19 @@ function ProductDetailsPage() {
   const { id } = useParams();
   const { data, error } = useSWR(`https://fakestoreapi.com/products/${id}`);
 
-  useEffect(() => {
-    const navigate = useNavigate();
-    // Check if the item is already in the cart
-    const isItemInCart = userdata.some((item) => item.id === data.id);
-    setIsDisabled(isItemInCart);
-  }, [userdata, data.id]);
-
   const handleClick = () => {
     addToCart(data);
     setIsDisabled(true);
-    navigate("/CartPage");
     // Add your logic for adding to cart here
   };
+
+  useEffect(() => {
+    if (data) {
+      // Check if the item is already in the cart
+      const isItemInCart = userdata.some((item) => item.id === data.id);
+      setIsDisabled(isItemInCart);
+    }
+  }, [userdata, data]);
 
   const RecommCategory = data?.category;
   console.log(RecommCategory);
@@ -57,11 +57,12 @@ function ProductDetailsPage() {
               >
                 Add to Cart
               </button>
-              <button
+              <Link
+                to="/CartPage"
                 className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer bg-black rounded-md`}
               >
                 Go to Cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>

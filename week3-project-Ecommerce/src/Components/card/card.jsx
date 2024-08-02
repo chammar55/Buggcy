@@ -48,7 +48,7 @@ const Card = ({ data }) => {
             </div>
           </div>
         </Link>
-        <Link to={isDisabled ? "./CartPage" : ""}>
+        <Link to={isDisabled ? "/CartPage" : ""}>
           <div
             className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
               isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
