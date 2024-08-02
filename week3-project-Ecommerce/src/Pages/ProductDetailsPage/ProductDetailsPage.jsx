@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import Rating from "../../Components/Ratings/Rating";
 import ProductList from "../../Components/ProductList/ProductList";
@@ -12,6 +12,7 @@ function ProductDetailsPage() {
   const { data, error } = useSWR(`https://fakestoreapi.com/products/${id}`);
 
   useEffect(() => {
+    const navigate = useNavigate();
     // Check if the item is already in the cart
     const isItemInCart = userdata.some((item) => item.id === data.id);
     setIsDisabled(isItemInCart);
@@ -20,6 +21,7 @@ function ProductDetailsPage() {
   const handleClick = () => {
     addToCart(data);
     setIsDisabled(true);
+    navigate("/CartPage");
     // Add your logic for adding to cart here
   };
 
@@ -46,7 +48,7 @@ function ProductDetailsPage() {
           <div className="flex flex-col gap-2">
             <p className="text-lg sm:text-xl">{data.description}</p>
             <div className="flex gap-3">
-              <Link
+              <button
                 className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer rounded-md ${
                   isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
                 }`}
@@ -54,13 +56,12 @@ function ProductDetailsPage() {
                 style={{ pointerEvents: isDisabled ? "none" : "auto" }}
               >
                 Add to Cart
-              </Link>
-              <Link
-                to="/CartPage"
+              </button>
+              <button
                 className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer bg-black rounded-md`}
               >
                 Go to Cart
-              </Link>
+              </button>
             </div>
           </div>
         </div>

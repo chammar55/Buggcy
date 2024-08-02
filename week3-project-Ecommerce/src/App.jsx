@@ -22,6 +22,8 @@ function App() {
           />
           <Route path="/CartPage" element={<CartPage />} />
           <Route path="/CheckoutPage" element={<CheckoutPage />} />
+          <Route path="*" element={<h1>Page doesn't exist</h1>} />{" "}
+          {/* Fallback route */}
           {/* <Route path="/*" element={<h1>Page doesn't exist</h1>} /> */}
         </Routes>
 
