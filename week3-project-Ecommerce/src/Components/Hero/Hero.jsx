@@ -2,7 +2,7 @@ import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { SwiperData } from "./SwiperData";
+import { SwiperList } from "./SwiperList";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
@@ -28,7 +28,7 @@ function Hero() {
         // onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        {SwiperData.map((data, index) => {
+        {SwiperList.map((data, index) => {
           return (
             <SwiperSlide
               className="w-full h-[60vw] md:h-[600px] flex justify-end "
