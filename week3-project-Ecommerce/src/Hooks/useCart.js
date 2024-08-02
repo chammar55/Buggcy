@@ -32,6 +32,7 @@ const useCartStore = create(
         set((state) => ({
           userdata: state.userdata.filter((item) => item.id !== id),
         })),
+      removeAllCartItems: () => set({ userdata: [] }),
       updateQuantity: (id, quantity) =>
         set((state) => ({
           userdata: state.userdata.map((item) =>

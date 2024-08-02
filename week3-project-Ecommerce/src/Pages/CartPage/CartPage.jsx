@@ -11,7 +11,9 @@ function CartPage() {
   const [discount, setDiscount] = useState(0);
 
   const handleIncrement = (id, currentQuantity) => {
-    updateQuantity(id, currentQuantity + 1);
+    if (currentQuantity < 10) {
+      updateQuantity(id, currentQuantity + 1);
+    }
   };
 
   const handleDecrement = (id, currentQuantity) => {
@@ -46,7 +48,7 @@ function CartPage() {
   };
 
   const handleApplyPromo = () => {
-    if (promoCode === "ammar") {
+    if (promoCode === "ammar" || promoCode === "discount") {
       setDiscount(0.1); // 10% discount
     } else {
       setDiscount(0);

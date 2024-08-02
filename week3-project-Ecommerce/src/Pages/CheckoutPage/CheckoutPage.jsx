@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 function CheckoutPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     userdata,
     shippingCost,
@@ -12,6 +13,7 @@ function CheckoutPage() {
     tax,
     discount,
     discountAmount,
+    removeAllCartItems,
   } = useCartStore();
 
   // Initial form values
@@ -48,7 +50,14 @@ function CheckoutPage() {
   const handleSubmit = (values) => {
     // Handle form submission
     console.log("Form Values:", values);
+    removeAllCartItems();
     // Example: Send values to a server or update application state
+    setIsModalOpen(true);
+  };
+  const handleClickOutsideModal = (e) => {
+    if (e.target.id === "modal-background") {
+      setIsModalOpen(false);
+    }
   };
 
   // Function to calculate total price
@@ -252,6 +261,28 @@ function CheckoutPage() {
           </Link> */}
         </div>
       </div>
+      {/* Modal ***********************************/}
+      {isModalOpen && (
+        <div
+          id="modal-background"
+          className=" fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+          onClick={handleClickOutsideModal}
+        >
+          <div className="bg-white p-2 md:p-6 rounded shadow-lg max-w-sm  mx-auto">
+            <h2 className="text-xl md:text-2xl font-bold mb-4">Order Placed</h2>
+            <p className="text-sm md:text-lg mb-4">
+              Your order has been placed successfully.
+            </p>
+            <Link
+              to="/"
+              className="flex justify-center bg-blue-500 text-sm md:text-xl text-white px-4 py-2 rounded"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Continue Shopping
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
