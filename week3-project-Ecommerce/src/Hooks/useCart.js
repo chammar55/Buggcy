@@ -1,10 +1,15 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 const useCartStore = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       userdata: [],
+      shippingCost: 0,
+      finalTotalPrice: 0,
+      tax: 0,
+      discount: 0,
+      discountAmount: 0,
       addToCart: (item) =>
         set((state) => {
           const existingItem = state.userdata.find(
@@ -33,9 +38,23 @@ const useCartStore = create(
             item.id === id ? { ...item, quantity } : item
           ),
         })),
+      updateCheckoutData: (
+        shippingCost,
+        finalTotalPrice,
+        tax,
+        discount,
+        discountAmount
+      ) =>
+        set(() => ({
+          shippingCost,
+          finalTotalPrice,
+          tax,
+          discount,
+          discountAmount,
+        })),
     }),
     {
-      name: "User-Cart-Store", // name of the item in the storage (must be unique)
+      name: "User-Cart-Store",
     }
   )
 );
