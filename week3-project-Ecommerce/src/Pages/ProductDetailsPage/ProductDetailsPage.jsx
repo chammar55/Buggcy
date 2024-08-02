@@ -1,18 +1,27 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import Rating from "../../Components/Ratings/Rating";
 import ProductList from "../../Components/ProductList/ProductList";
+import useCartStore from "../../Hooks/useCart";
 
 function ProductDetailsPage() {
+  const { userdata, addToCart } = useCartStore();
   const [isDisabled, setIsDisabled] = useState(false);
+  const { id } = useParams();
+  const { data, error } = useSWR(`https://fakestoreapi.com/products/${id}`);
+
+  useEffect(() => {
+    // Check if the item is already in the cart
+    const isItemInCart = userdata.some((item) => item.id === data.id);
+    setIsDisabled(isItemInCart);
+  }, [userdata, data.id]);
 
   const handleClick = () => {
+    addToCart(data);
     setIsDisabled(true);
     // Add your logic for adding to cart here
   };
-  const { id } = useParams();
-  const { data, error } = useSWR(`https://fakestoreapi.com/products/${id}`);
 
   const RecommCategory = data?.category;
   console.log(RecommCategory);
@@ -37,7 +46,7 @@ function ProductDetailsPage() {
           <div className="flex flex-col gap-2">
             <p className="text-lg sm:text-xl">{data.description}</p>
             <div className="flex gap-3">
-              <button
+              <Link
                 className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer rounded-md ${
                   isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
                 }`}
@@ -45,12 +54,13 @@ function ProductDetailsPage() {
                 style={{ pointerEvents: isDisabled ? "none" : "auto" }}
               >
                 Add to Cart
-              </button>
-              <button
+              </Link>
+              <Link
+                to="/CartPage"
                 className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer bg-black rounded-md`}
               >
                 Go to Cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ function App() {
             />
             <Route path="/CartPage" element={<CartPage />} />
             <Route path="/CheckoutPage" element={<CheckoutPage />} />
-            <Route path="/*" element={<h1>Page doesn't exist</h1>} />
+            {/* <Route path="/*" element={<h1>Page doesn't exist</h1>} /> */}
           </Routes>
 
           {/* <Footer /> */}

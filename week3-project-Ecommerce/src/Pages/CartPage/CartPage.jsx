@@ -78,7 +78,7 @@ function CartPage() {
               >
                 <div className="flex gap-2 w-[50%]">
                   <img
-                    className="size-[25vw] md:size-28 flex1"
+                    className=" w-24 h-auto flex1"
                     src={`${item.image}`}
                     alt="image"
                   />
@@ -125,11 +125,11 @@ function CartPage() {
               {/* //Show before 786px / For  mobile **************************** */}
               <div className="flex gap-3 md:hidden my-9">
                 <img
-                  className="size-[25vw] md:size-28 flex1"
+                  className="w-[23vw]   flex1"
                   src={`${item.image}`}
                   alt="image"
                 />
-                <div className="flex flex-col gap-1 justify-between flex-1">
+                <div className="flex flex-col gap-1 justify-around flex-1">
                   <div className="text-[4vw] md:text-sm font-bold">
                     {item.title}
                   </div>
@@ -157,7 +157,7 @@ function CartPage() {
                     </div>
                   </div>
                   <p
-                    className="cursor-pointer text-sm text-red-500"
+                    className="cursor-pointer text-[3vw] text-red-500"
                     onClick={() => removeFromCart(item.id)}
                   >
                     Remove
