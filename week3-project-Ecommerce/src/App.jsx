@@ -11,24 +11,22 @@ import Footer from "./Components/Footer";
 function App() {
   return (
     <>
-      <div>
-        <Router>
-          <Navbar />
+      <Router>
+        <Navbar />
 
-          <Routes>
-            <Route index element={<Home />} />
-            <Route
-              path="/ProductDetailsPage/:id"
-              element={<ProductDetailsPage />}
-            />
-            <Route path="/CartPage" element={<CartPage />} />
-            <Route path="/CheckoutPage" element={<CheckoutPage />} />
-            {/* <Route path="/*" element={<h1>Page doesn't exist</h1>} /> */}
-          </Routes>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route
+            path="/ProductDetailsPage/:id"
+            element={<ProductDetailsPage />}
+          />
+          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/CheckoutPage" element={<CheckoutPage />} />
+          {/* <Route path="/*" element={<h1>Page doesn't exist</h1>} /> */}
+        </Routes>
 
-          {/* <Footer /> */}
-        </Router>
-      </div>
+        {/* <Footer /> */}
+      </Router>
     </>
   );
 }

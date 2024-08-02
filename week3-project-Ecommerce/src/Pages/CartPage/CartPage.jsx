@@ -90,7 +90,7 @@ function CartPage() {
                       {item.category}
                     </div>
                     <p
-                      className="cursor-pointer text-sm text-red-500"
+                      className="cursor-pointer text-sm w-fit text-red-500"
                       onClick={() => removeFromCart(item.id)}
                     >
                       Remove
@@ -157,7 +157,7 @@ function CartPage() {
                     </div>
                   </div>
                   <p
-                    className="cursor-pointer text-[3vw] text-red-500"
+                    className="cursor-pointer text-[3vw] w-fit text-red-500"
                     onClick={() => removeFromCart(item.id)}
                   >
                     Remove
