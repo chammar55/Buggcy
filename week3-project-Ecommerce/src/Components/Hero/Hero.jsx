@@ -54,6 +54,7 @@ function Hero() {
                     className="lg:max-w-[550px] absolute bottom-0"
                     src={data.image}
                     alt="image"
+                    loading="lazy"
                   />
                 </div>
               </div>
