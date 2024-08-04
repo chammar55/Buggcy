@@ -6,7 +6,7 @@ import ProductDetailsPage from "./Pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./Pages/CartPage/CartPage";
 import CheckoutPage from "./Pages/CheckoutPage/CheckoutPage";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -22,12 +22,8 @@ function App() {
           />
           <Route path="/CartPage" element={<CartPage />} />
           <Route path="/CheckoutPage" element={<CheckoutPage />} />
-          <Route path="*" element={<h1>Page doesn't exist</h1>} />{" "}
-          {/* Fallback route */}
-          {/* <Route path="/*" element={<h1>Page doesn't exist</h1>} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
-
-        {/* <Footer /> */}
       </Router>
     </>
   );

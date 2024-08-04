@@ -74,216 +74,232 @@ function CheckoutPage() {
   const totalPrice = calculateTotalPrice(userdata);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 p-6 md:gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
-      <div className="flex flex-col col-span-3 md:col-span-2 ">
-        <div className="flex justify-between border-b-[2px] pb-5 font-bold text-lg md:text-2xl">
-          <h1 className="text-2xl font-bold ">Checkout</h1>
-        </div>
-        {/* Formik form *********************************** */}
-        <div className="container mx-auto p-4">
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+    <>
+      {userdata.length == 0 ? (
+        <div className="flex flex-col gap-4 justify-center items-center w-full h-[100vh]">
+          <p>There are no items in this cart</p>{" "}
+          <Link
+            className="flex justify-center items-center gap-2 p-2 border w-[200px] border-black"
+            to="/"
           >
-            {({ values }) => (
-              <Form>
-                <div className="flex justify-between gap-3">
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="name"
-                      className="  block text-gray-700 max-sm:text-[12px] md:text-lg"
-                    >
-                      Name
-                    </label>
-                    <Field
-                      name="name"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="email"
-                      className="block text-gray-700 max-sm:text-[12px] md:text-lg"
-                    >
-                      Email
-                    </label>
-                    <Field
-                      name="email"
-                      type="email"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-between gap-3">
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="cardNumber"
-                      className="max-sm:text-[12px] md:text-lg block text-gray-700"
-                    >
-                      Card Number
-                    </label>
-                    <Field
-                      name="cardNumber"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="cardNumber"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="expiryDate"
-                      className="max-sm:text-[12px] md:text-lg block text-gray-700"
-                    >
-                      Expiry Date (MM/YY)
-                    </label>
-                    <Field
-                      name="expiryDate"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="expiryDate"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-between gap-3">
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="cvv"
-                      className="block text-gray-700 max-sm:text-[12px] md:text-lg"
-                    >
-                      CVV
-                    </label>
-                    <Field
-                      name="cvv"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="cvv"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-
-                  <div className="mb-4 flex-1">
-                    <label
-                      htmlFor="nameOnCard"
-                      className="block text-gray-700 max-sm:text-[12px] md:text-lg"
-                    >
-                      Name on Card
-                    </label>
-                    <Field
-                      name="nameOnCard"
-                      type="text"
-                      className="w-full px-3 py-2 border rounded"
-                    />
-                    <ErrorMessage
-                      name="nameOnCard"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-blue-500 text-white px-4 py-2 rounded max-sm:text-[14px] md:text-lg"
-                >
-                  Place Order
-                </button>
-              </Form>
-            )}
-          </Formik>
+            <ion-icon name="arrow-back-outline"></ion-icon> Continue Shopping
+          </Link>
         </div>
-      </div>
-      {/* show after 786px  ********************************/}
-      <div className=" md:block col-span-1">
-        <div className="flex justify-between border-b-[2px] pb-5 font-bold text-2xl">
-          <p>Order Summary</p>
-        </div>
-        <div className="flex flex-col ga-3 border-b-[2px] md:p-5 h-[200px] text-md my-3">
-          <p className="text-gray-400 text-sm mb-5">
-            By placing your order, you agree to our company Privacy policy and
-            Conditions of use.
-          </p>
-          <div className="flex justify-between">
-            <h3>Item ({userdata.length})</h3>
-            <h3>${totalPrice.toFixed(2)}</h3>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 p-6 md:gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
+          <div className="flex flex-col col-span-3 md:col-span-2 ">
+            <div className="flex justify-between border-b-[2px] pb-5 font-bold text-lg md:text-2xl">
+              <h1 className="text-2xl font-bold ">Checkout</h1>
+            </div>
+            {/* Formik form *********************************** */}
+            <div className="container mx-auto p-4">
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ values }) => (
+                  <Form>
+                    <div className="flex justify-between gap-3">
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="name"
+                          className="  block text-gray-700 max-sm:text-[12px] md:text-lg"
+                        >
+                          Name
+                        </label>
+                        <Field
+                          name="name"
+                          type="text"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="name"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="email"
+                          className="block text-gray-700 max-sm:text-[12px] md:text-lg"
+                        >
+                          Email
+                        </label>
+                        <Field
+                          name="email"
+                          type="email"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between gap-3">
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="cardNumber"
+                          className="max-sm:text-[12px] md:text-lg block text-gray-700"
+                        >
+                          Card Number
+                        </label>
+                        <Field
+                          name="cardNumber"
+                          type="text"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="cardNumber"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="expiryDate"
+                          className="max-sm:text-[12px] md:text-lg block text-gray-700"
+                        >
+                          Expiry Date (MM/YY)
+                        </label>
+                        <Field
+                          name="expiryDate"
+                          type="text"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="expiryDate"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between gap-3">
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="cvv"
+                          className="block text-gray-700 max-sm:text-[12px] md:text-lg"
+                        >
+                          CVV
+                        </label>
+                        <Field
+                          name="cvv"
+                          type="text"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="cvv"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+
+                      <div className="mb-4 flex-1">
+                        <label
+                          htmlFor="nameOnCard"
+                          className="block text-gray-700 max-sm:text-[12px] md:text-lg"
+                        >
+                          Name on Card
+                        </label>
+                        <Field
+                          name="nameOnCard"
+                          type="text"
+                          className="w-full px-3 py-2 border rounded"
+                        />
+                        <ErrorMessage
+                          name="nameOnCard"
+                          component="div"
+                          className="text-red-500 text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-500 text-white px-4 py-2 rounded max-sm:text-[14px] md:text-lg"
+                    >
+                      Place Order
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <p>Shipping and handling</p>
-            <p>${shippingCost}</p>
-          </div>
-          <div className="flex justify-between">
-            <p>Discount</p>
-            <p>
-              {discount * 100}% ( ${discountAmount.toFixed(2)} )
-            </p>
-          </div>
-          <div className="flex justify-between">
-            <p>Tax</p>
-            <p>{tax}</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-4 my-3">
-          <div className="flex justify-between">
-            <h3 className="font-bold">Total Cost</h3>
-            <h3 className="font-bold">$ {finalTotalPrice.toFixed(2)}</h3>
-          </div>
-          {/* <Link
+          {/* show after 786px  ********************************/}
+          <div className=" md:block col-span-1">
+            <div className="flex justify-between border-b-[2px] pb-5 font-bold text-2xl">
+              <p>Order Summary</p>
+            </div>
+            <div className="flex flex-col ga-3 border-b-[2px] md:p-5 h-[200px] text-md my-3">
+              <p className="text-gray-400 text-sm mb-5">
+                By placing your order, you agree to our company Privacy policy
+                and Conditions of use.
+              </p>
+              <div className="flex justify-between">
+                <h3>Item ({userdata.length})</h3>
+                <h3>${totalPrice.toFixed(2)}</h3>
+              </div>
+              <div className="flex justify-between">
+                <p>Shipping and handling</p>
+                <p>${shippingCost}</p>
+              </div>
+              <div className="flex justify-between">
+                <p>Discount</p>
+                <p>
+                  {discount * 100}% ( ${discountAmount.toFixed(2)} )
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <p>Tax</p>
+                <p>{tax}</p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 my-3">
+              <div className="flex justify-between">
+                <h3 className="font-bold">Total Cost</h3>
+                <h3 className="font-bold">$ {finalTotalPrice.toFixed(2)}</h3>
+              </div>
+              {/* <Link
             to="/CheckoutPage"
             className="bg-blue-700 text-white px-4 py-2 rounded-sm flex justify-center"
           >
             Place Order
           </Link> */}
-        </div>
-      </div>
-      {/* Modal ***********************************/}
-      {isModalOpen && (
-        <div
-          id="modal-background"
-          className=" fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-          onClick={handleClickOutsideModal}
-        >
-          <div className="bg-white p-2 md:p-6 rounded shadow-lg max-w-sm  mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">Order Placed</h2>
-            <p className="text-sm md:text-lg mb-4">
-              Your order has been placed successfully.
-            </p>
-            <Link
-              to="/"
-              className="flex justify-center bg-blue-500 text-sm md:text-xl text-white px-4 py-2 rounded"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Continue Shopping
-            </Link>
+            </div>
           </div>
+          {/* Modal ***********************************/}
+          {isModalOpen && (
+            <div
+              id="modal-background"
+              className=" fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+              onClick={handleClickOutsideModal}
+            >
+              <div className="bg-white p-2 md:p-6 rounded shadow-lg max-w-sm  mx-auto">
+                <h2 className="text-xl md:text-2xl font-bold mb-4">
+                  Order Placed
+                </h2>
+                <p className="text-sm md:text-lg mb-4">
+                  Your order has been placed successfully.
+                </p>
+                <Link
+                  to="/"
+                  className="flex justify-center bg-blue-500 text-sm md:text-xl text-white px-4 py-2 rounded"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Continue Shopping
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      )}{" "}
+    </>
   );
 }
 

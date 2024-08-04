@@ -93,24 +93,101 @@ function CartPage() {
           <span className="hidden md:block">Total</span>
         </div>
         <div className="my-6">
-          {userdata.map((item) => (
-            <div key={item.id}>
-              <div className="hidden md:flex justify-between my-9">
-                <div className="flex gap-2 w-[50%]">
+          {userdata.length == 0 ? (
+            <div className="flex justify-center text-[12px] md:text-sm my-3">
+              <p>There are no items in this cart</p>
+            </div>
+          ) : (
+            userdata.map((item) => (
+              <div key={item.id}>
+                <div className="hidden md:flex justify-between my-9">
+                  <div className="flex gap-2 w-[50%]">
+                    <img
+                      className="w-24 h-auto flex1"
+                      src={`${item.image}`}
+                      alt="image"
+                    />
+                    <div className="flex flex-1 flex-col justify-between">
+                      <div className="text-[4vw] md:text-sm font-bold">
+                        {item.title}
+                      </div>
+                      <div className="capitalize text-black-500 text-md">
+                        {item.category}
+                      </div>
+                      <p
+                        className="cursor-pointer text-sm w-fit text-red-500 flex items-center"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        <ion-icon name="trash-outline"></ion-icon>
+                        Remove
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <ion-icon
+                      onClick={() => handleDecrement(item.id, item.quantity)}
+                      className="cursor-pointer"
+                      name="remove-outline"
+                    ></ion-icon>
+                    <input
+                      className="w-10 h-7 border text-md text-center"
+                      value={item.quantity}
+                      type="number"
+                      onChange={(e) => handleChange(item.id, e)}
+                    />
+                    <ion-icon
+                      onClick={() => handleIncrement(item.id, item.quantity)}
+                      className="cursor-pointer"
+                      name="add-outline"
+                    ></ion-icon>
+                  </div>
+                  <div className="flex items-center font-bold">
+                    ${item.price}
+                  </div>
+                  <div className="flex items-center font-bold">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </div>
+                </div>
+
+                <div className="flex gap-3 md:hidden my-9">
                   <img
-                    className="w-24 h-auto flex1"
+                    className="w-[23vw] flex1"
                     src={`${item.image}`}
                     alt="image"
                   />
-                  <div className="flex flex-1 flex-col justify-between">
+                  <div className="flex flex-col gap-1 justify-around flex-1">
                     <div className="text-[4vw] md:text-sm font-bold">
                       {item.title}
                     </div>
-                    <div className="capitalize text-black-500 text-md">
-                      {item.category}
+                    <div className="flex justify-between w-full">
+                      <div className="text-[4vw] flex items-center font-bold">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </div>
+                      <div className="flex gap-2 items-center">
+                        <ion-icon
+                          onClick={() =>
+                            handleDecrement(item.id, item.quantity)
+                          }
+                          className="cursor-pointer"
+                          name="remove-outline"
+                        ></ion-icon>
+                        <input
+                          className="w-[7vw] h-[5vw] text-[3vw] border text-center"
+                          value={item.quantity}
+                          type="number"
+                          onChange={(e) => handleChange(item.id, e)}
+                        />
+                        <ion-icon
+                          onClick={() =>
+                            handleIncrement(item.id, item.quantity)
+                          }
+                          className="cursor-pointer"
+                          name="add-outline"
+                        ></ion-icon>
+                      </div>
                     </div>
                     <p
-                      className="cursor-pointer text-sm w-fit text-red-500 flex items-center"
+                      className="cursor-pointer text-[3vw] w-fit text-red-500 flex items-center"
                       onClick={() => removeFromCart(item.id)}
                     >
                       <ion-icon name="trash-outline"></ion-icon>
@@ -118,74 +195,9 @@ function CartPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <ion-icon
-                    onClick={() => handleDecrement(item.id, item.quantity)}
-                    className="cursor-pointer"
-                    name="remove-outline"
-                  ></ion-icon>
-                  <input
-                    className="w-10 h-7 border text-md text-center"
-                    value={item.quantity}
-                    type="number"
-                    onChange={(e) => handleChange(item.id, e)}
-                  />
-                  <ion-icon
-                    onClick={() => handleIncrement(item.id, item.quantity)}
-                    className="cursor-pointer"
-                    name="add-outline"
-                  ></ion-icon>
-                </div>
-                <div className="flex items-center font-bold">${item.price}</div>
-                <div className="flex items-center font-bold">
-                  ${(item.price * item.quantity).toFixed(2)}
-                </div>
               </div>
-
-              <div className="flex gap-3 md:hidden my-9">
-                <img
-                  className="w-[23vw] flex1"
-                  src={`${item.image}`}
-                  alt="image"
-                />
-                <div className="flex flex-col gap-1 justify-around flex-1">
-                  <div className="text-[4vw] md:text-sm font-bold">
-                    {item.title}
-                  </div>
-                  <div className="flex justify-between w-full">
-                    <div className="text-[4vw] flex items-center font-bold">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </div>
-                    <div className="flex gap-2 items-center">
-                      <ion-icon
-                        onClick={() => handleDecrement(item.id, item.quantity)}
-                        className="cursor-pointer"
-                        name="remove-outline"
-                      ></ion-icon>
-                      <input
-                        className="w-[7vw] h-[5vw] text-[3vw] border text-center"
-                        value={item.quantity}
-                        type="number"
-                        onChange={(e) => handleChange(item.id, e)}
-                      />
-                      <ion-icon
-                        onClick={() => handleIncrement(item.id, item.quantity)}
-                        className="cursor-pointer"
-                        name="add-outline"
-                      ></ion-icon>
-                    </div>
-                  </div>
-                  <p
-                    className="cursor-pointer text-[3vw] w-fit text-red-500 flex items-center"
-                    onClick={() => removeFromCart(item.id)}
-                  >
-                    <ion-icon name="trash-outline"></ion-icon>
-                    Remove
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
         <div>
           <Link to="/">
