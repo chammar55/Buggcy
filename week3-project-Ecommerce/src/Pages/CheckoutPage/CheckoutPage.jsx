@@ -74,7 +74,7 @@ function CheckoutPage() {
   const totalPrice = calculateTotalPrice(userdata);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 p-6 gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 p-6 md:gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
       <div className="flex flex-col col-span-3 md:col-span-2 ">
         <div className="flex justify-between border-b-[2px] pb-5 font-bold text-lg md:text-2xl">
           <h1 className="text-2xl font-bold ">Checkout</h1>
@@ -224,7 +224,7 @@ function CheckoutPage() {
         <div className="flex justify-between border-b-[2px] pb-5 font-bold text-2xl">
           <p>Order Summary</p>
         </div>
-        <div className="flex flex-col ga-3 border-b-[2px] p-5 h-[200px] text-md my-3">
+        <div className="flex flex-col ga-3 border-b-[2px] md:p-5 h-[200px] text-md my-3">
           <p className="text-gray-400 text-sm mb-5">
             By placing your order, you agree to our company Privacy policy and
             Conditions of use.

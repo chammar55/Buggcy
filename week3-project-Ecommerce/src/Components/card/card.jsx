@@ -22,7 +22,10 @@ const Card = ({ data }) => {
   };
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md w-64 h-[400px] m-4 p-5 flex flex-col items-center justify-start relative">
-      <Link to={`/ProductDetailsPage/${data.id}`}>
+      <Link
+        className="flex items-center h-[50%]"
+        to={`/ProductDetailsPage/${data.id}`}
+      >
         {/* img div */}
         <div className="flex items-center justify-center h-[100%]">
           <img
@@ -38,7 +41,7 @@ const Card = ({ data }) => {
           <div className="flex flex-col ">
             <p className="text-[18px] font-bold">{`$ ${data.price}`}</p>
             <h3 className="text-[1.2em] mb-[8px]">
-              {data.title.slice(0, 40) + "..."}
+              {data.title.slice(0, 30) + "..."}
             </h3>
 
             <div className="flex">
@@ -58,6 +61,11 @@ const Card = ({ data }) => {
           >
             {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
             <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
+            {isDisabled ? (
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            ) : (
+              ""
+            )}
           </div>
         </Link>
       </div>

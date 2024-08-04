@@ -21,7 +21,7 @@ function ProductList({ heading, category }) {
   if (!data) return <div>Loading...</div>;
   return (
     <div className="">
-      <h1 className="capitalize px-20 text-2xl sm:text-3xl font-bold">
+      <h1 className="capitalize px-20 whitespace-nowrap flex justify-center text-xl sm:text-3xl font-bold">
         {heading}
       </h1>
       <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -32,11 +32,19 @@ function ProductList({ heading, category }) {
             clickable: true,
           }}
           breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
+            // 640: {
+            //   slidesPerView: 2,
+            //   spaceBetween: 20,
+            // },
+            // 768: {
+            //   slidesPerView: 4,
+            //   spaceBetween: 40,
+            // },
             768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            903: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
@@ -54,7 +62,7 @@ function ProductList({ heading, category }) {
         >
           {data.map((data, index) => (
             <>
-              <SwiperSlide className="sm:ml-10 max-sm:flex max-sm:items-center max-sm:justify-center ">
+              <SwiperSlide className="sm:ml-10 max-md:flex max-md:items-center max-md:justify-center ">
                 <Card data={data} key={index} />
               </SwiperSlide>
             </>
