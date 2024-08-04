@@ -3,6 +3,7 @@ import "./card.css";
 import Rating from "../Ratings/Rating";
 import { Link } from "react-router-dom";
 import useCartStore from "../../Hooks/useCart";
+const fallbackImage = "path/to/fallback/image.jpg"; // if image from api not loaded
 
 const Card = ({ data }) => {
   const { userdata, addToCart } = useCartStore();
@@ -32,6 +33,7 @@ const Card = ({ data }) => {
             src={`${data.image}`}
             alt="image"
             className="w-full max-h-[200px] object-contain transition-transform duration-200 hover:scale-110"
+            onError={(e) => (e.target.src = fallbackImage)}
           />
         </div>
       </Link>

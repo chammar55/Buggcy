@@ -78,7 +78,7 @@ function CartPage() {
   }, [shipping, finalTotalPrice, tax, discount, updateCheckoutData]);
 
   return (
-    <div className="grid grid-cols-3 p-6 gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
+    <div className="grid grid-cols-3 p-6 gap-6 max-w-[1200px] mx-auto shadow-lg my-6">
       <div className="flex flex-col col-span-3 md:col-span-2">
         <div className="flex justify-between border-b-[2px] pb-5 font-bold text-lg md:text-2xl">
           <p>Shopping Cart</p>
