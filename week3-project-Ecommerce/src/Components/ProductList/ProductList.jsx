@@ -61,7 +61,7 @@ function ProductList({ heading, category }) {
             // },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 60,
             },
             // 903: {
             //   slidesPerView: 4,
@@ -69,7 +69,7 @@ function ProductList({ heading, category }) {
             // },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 60,
             },
             1440: {
               slidesPerView: 5,
