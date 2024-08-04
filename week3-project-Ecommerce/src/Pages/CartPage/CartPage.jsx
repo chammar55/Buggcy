@@ -295,13 +295,19 @@ function CartPage() {
           }`}
           style={{ height: "80%" }}
         >
-          <div className="flex flex-col justify-between border-b-[2px] pb-5 h-[200px] text-md my-3">
+          <div className="flex flex-col gap-3 justify-between  pb-5 h-[200px] text-md my-3">
             {/* <div className="flex justify-between">
             <h3>Item {userdata.length}</h3>
             <h3>${totalPrice.toFixed(2)}</h3>
           </div> */}
             <div className="flex flex-col gap-3">
-              <h3 className="text-xl">Shipping</h3>
+              <div className="flex justify-between items-center mb-5 text-2xl">
+                <h3 className="text-xl">Shipping</h3>
+                <ion-icon
+                  onClick={() => handlePopUp()}
+                  name="close-outline"
+                ></ion-icon>
+              </div>
               <select
                 name="shipping"
                 id="shipping"
