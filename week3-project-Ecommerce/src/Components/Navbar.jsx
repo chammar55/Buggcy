@@ -6,7 +6,7 @@ function Navbar() {
   const { userdata } = useCartStore();
 
   return (
-    <div className="flex justify-between align p-2 px-6 sm:px-5 max-w-[1440px] mx-auto ">
+    <div className="flex justify-between align p-2 px-6 sm:px-5 max-w-[1440px] mx-auto border-b">
       <h1>
         <Link className="text-lg sm:text-2xl font-bold" to="/">
           Ecomm

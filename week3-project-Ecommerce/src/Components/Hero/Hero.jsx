@@ -9,7 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 function Hero() {
   const handleShopNowClick = () => {
     // Find the section to scroll to
-    const section = document.getElementById("men's-clothing");
+    const section = document.getElementById("electronics");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }

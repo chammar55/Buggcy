@@ -10,15 +10,31 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Card from "../card/card";
+import useProducts from "../../Hooks/useProducts";
+import { TailSpin } from "react-loader-spinner";
 
 function ProductList({ heading, category }) {
-  const { data, error } = useSWR(
-    `https://fakestoreapi.com/products/category/${category}`
-  );
+  const { data, isLoading, isError } = useProducts({ category });
+  // const { data, error } = useSWR(`products/category/${category}`);
   // console.log(data);
 
-  // if (error) return <div>Error loading data.</div>;
-  if (!data) return <div>Loading...</div>;
+  if (isError) return <div>Error loading data.</div>;
+  if (!data) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <TailSpin
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
   return (
     <div className="">
       <h1 className="capitalize px-20 whitespace-nowrap flex justify-center text-xl sm:text-3xl font-bold">
@@ -26,11 +42,14 @@ function ProductList({ heading, category }) {
       </h1>
       <ul style={{ listStyleType: "none", padding: 0 }}>
         <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
+          slidesPerView={"auto"}
+          // centeredSlides={true}
+          spaceBetween={30}
           pagination={{
             clickable: true,
           }}
+          modules={[Pagination]}
+          className=" p-5 "
           breakpoints={{
             // 640: {
             //   slidesPerView: 2,
@@ -44,25 +63,23 @@ function ProductList({ heading, category }) {
               slidesPerView: 3,
               spaceBetween: 40,
             },
-            903: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-            },
+            // 903: {
+            //   slidesPerView: 4,
+            //   spaceBetween: 40,
+            // },
             1024: {
-              slidesPerView: 5,
+              slidesPerView: 4,
               spaceBetween: 50,
             },
             1440: {
-              slidesPerView: 6,
+              slidesPerView: 5,
               spaceBetween: 20,
             },
           }}
-          modules={[Pagination]}
-          className=" p-5 "
         >
           {data.map((data, index) => (
             <>
-              <SwiperSlide className="sm:ml-10 max-md:flex max-md:items-center max-md:justify-center ">
+              <SwiperSlide className=" max-md:flex max-md:items-center max-md:justify-center ">
                 <Card data={data} key={index} />
               </SwiperSlide>
             </>

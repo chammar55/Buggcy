@@ -4,6 +4,7 @@ import useSWR from "swr";
 import Rating from "../../Components/Ratings/Rating";
 import ProductList from "../../Components/ProductList/ProductList";
 import useCartStore from "../../Hooks/useCart";
+import { TailSpin } from "react-loader-spinner";
 
 function ProductDetailsPage() {
   const { userdata, addToCart } = useCartStore();
@@ -27,9 +28,24 @@ function ProductDetailsPage() {
 
   const RecommCategory = data?.category;
   console.log(RecommCategory);
-  if (!data) return <div>Loading...</div>;
+  if (!data) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <TailSpin
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
   return (
-    <div className="flex flex-col gap-8 ">
+    <div className="flex flex-col mx-auto justify-center gap-8 max-w-[1440px]  ">
       <div className="grid md:grid-cols-2 gap-2 p-6 grid-cols-1">
         <div className="flex items-center justify-center">
           <img className="w-[300px]" src={`${data.image}`} alt="productImg" />
