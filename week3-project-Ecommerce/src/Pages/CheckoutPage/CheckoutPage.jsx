@@ -92,7 +92,7 @@ function CheckoutPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 p-6 md:gap-6 md:w-[1200px] mx-auto shadow-lg my-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 p-6 md:gap-6 max-w-[1200px] mx-auto shadow-lg my-6">
           <div className="flex flex-col col-span-3 md:col-span-2 ">
             <div className="flex justify-between border-b-[2px] pb-5 font-bold text-lg md:text-2xl">
               <h1 className="text-2xl font-bold ">Checkout</h1>
@@ -263,7 +263,7 @@ function CheckoutPage() {
               </div>
               <div className="flex justify-between">
                 <p>Tax</p>
-                <p>{tax}</p>
+                <p>$ {tax.toFixed(2)} </p>
               </div>
             </div>
             <div className="flex flex-col gap-4 my-3">
