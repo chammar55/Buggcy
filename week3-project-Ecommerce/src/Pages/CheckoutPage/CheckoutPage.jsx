@@ -50,14 +50,20 @@ function CheckoutPage() {
   const handleSubmit = (values) => {
     // Handle form submission
     console.log("Form Values:", values);
-    removeAllCartItems();
-    // Example: Send values to a server or update application state
     setIsModalOpen(true);
+
+    // Example: Send values to a server or update application state
   };
   const handleClickOutsideModal = (e) => {
     if (e.target.id === "modal-background") {
       setIsModalOpen(false);
+      removeAllCartItems();
     }
+  };
+
+  const handleComtinueShopping = () => {
+    setIsModalOpen(false);
+    removeAllCartItems();
   };
 
   // Function to calculate total price
@@ -289,10 +295,12 @@ function CheckoutPage() {
                 </p>
                 <Link
                   to="/"
-                  className="flex justify-center bg-blue-500 text-sm md:text-xl text-white px-4 py-2 rounded"
-                  onClick={() => setIsModalOpen(false)}
+                  className="flex justify-center items-center gap-2 bg-blue-500 text-sm md:text-xl text-white px-4 py-2 rounded"
+                  // onClick={() => setIsModalOpen(false)}
+                  onClick={() => handleComtinueShopping()}
                 >
-                  Continue Shopping
+                  <ion-icon name="arrow-back-outline"></ion-icon> Continue
+                  Shopping
                 </Link>
               </div>
             </div>

@@ -9,6 +9,17 @@ function CartPage() {
   const [shipping, setShipping] = useState(0);
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false); // mobile screen , a screen pop out from bottom to top
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickOutsideModal = (e) => {
+    if (e.target.id === "modal-background") {
+      setIsOpen(false);
+    }
+  };
+  const handlePopUp = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleIncrement = (id, currentQuantity) => {
     if (currentQuantity < 10) {
@@ -210,11 +221,12 @@ function CartPage() {
           </Link>
         </div>
       </div>
-
+      {/* order summary large screens ( more then 768px) */}
       <div className="hidden md:block col-span-1">
         <div className="flex justify-between border-b-[2px] pb-5 font-bold text-2xl">
           <p>Order Summary</p>
         </div>
+
         <div className="flex flex-col justify-between border-b-[2px] pb-5 h-[200px] text-md my-3">
           {/* <div className="flex justify-between">
             <h3>Item {userdata.length}</h3>
@@ -252,6 +264,7 @@ function CartPage() {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col gap-4 my-3">
           <div className="flex justify-between">
             <h3 className="font-bold">Total Cost</h3>
@@ -266,12 +279,87 @@ function CartPage() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-3 md:hidden">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex gap-2">
-            <h3 className="text-md font-bold">Total Cost:</h3>
-            <h3 className="text-md">${finalTotalPrice.toFixed(2)}</h3>
+      {/* Mobile popup from botton (Show more details button) */}
+      <div
+        id="modal-background"
+        className={` ${
+          isOpen
+            ? " bg-black fixed inset-0  bg-opacity-50 flex items-center justify-center"
+            : " "
+        }`}
+        onClick={handleClickOutsideModal}
+      >
+        <div
+          className={`md:hidden rounded-t-xl fixed bottom-0 left-0 w-full bg-white border-t-2 p-5 transform transition-transform duration-500 ${
+            isOpen ? "translate-y-0" : "translate-y-full"
+          }`}
+          style={{ height: "80%" }}
+        >
+          <div className="flex flex-col justify-between border-b-[2px] pb-5 h-[200px] text-md my-3">
+            {/* <div className="flex justify-between">
+            <h3>Item {userdata.length}</h3>
+            <h3>${totalPrice.toFixed(2)}</h3>
+          </div> */}
+            <div className="flex flex-col gap-3">
+              <h3 className="text-xl">Shipping</h3>
+              <select
+                name="shipping"
+                id="shipping"
+                onChange={handleShippingChange}
+                className="px-2 py-1 border rounded"
+              >
+                <option value="0">Standard Shipping - $0</option>
+                <option value="10">Express Shipping - $10</option>
+                <option value="15">Fast Shipping - $15</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-xl">Promo Code</h3>
+              <div className="flex">
+                <input
+                  placeholder="Enter your code"
+                  className="focus:outline-none px-2 w-[100%] border rounded"
+                  type="text"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <button
+                  className="bg-red-500 text-white px-4 py-2 w-[100px] rounded-sm"
+                  onClick={handleApplyPromo}
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile bottom bar */}
+      <div className=" fixed bottom-0 left-0 w-full bg-gray-800 text-white px-3 py-1 md:hidden">
+        <div className="container mx-auto flex justify-between items-center">
+          <div
+            // onClick={() => setIsOpen(!isOpen)}
+            onClick={() => handlePopUp()}
+            className="flex gap-2 items-center border rounded p-1"
+          >
+            <div className="flex flex-col ">
+              <div className="flex gap-1">
+                <h3 className="text-md font-bold">Total Cost:</h3>
+                <h3 className="text-md">${finalTotalPrice.toFixed(2)}</h3>
+              </div>
+              <div className="flex  gap-1">
+                <h3 className="text-sm  ">Shipping Fee:</h3>
+                <h3 className="text-sm">${shipping}</h3>
+              </div>
+            </div>
+            {isOpen ? (
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            ) : (
+              <ion-icon name="chevron-up-outline"></ion-icon>
+            )}
+          </div>
+
           <Link
             to="/CheckoutPage"
             className="bg-blue-500 text-white p-2 rounded text-md"
