@@ -300,7 +300,7 @@ function CartPage() {
             <h3>Item {userdata.length}</h3>
             <h3>${totalPrice.toFixed(2)}</h3>
           </div> */}
-            {/* adafa */}
+
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center mb-5 text-2xl">
                 <h3 className="text-xl">Shipping</h3>
