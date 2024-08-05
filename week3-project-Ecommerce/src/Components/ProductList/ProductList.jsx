@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,9 +11,36 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Card from "../card/card";
 import useProducts from "../../Hooks/useProducts";
 import { TailSpin } from "react-loader-spinner";
+import AddNewProductCard from "../AddNewProductCard/AddNewProductCard";
+import ProductModel from "../ProductModel/ProductModel";
 
 function ProductList({ heading, category }) {
   const { data, isLoading, isError } = useProducts({ category });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [DeleteProducts, setDeleteProducts] = useState([]);
+
+  const handleDelete = (id) => {
+    const delArray = [...DeleteProducts, id];
+    setDeleteProducts(delArray);
+    // handleDataFromCard(delArray);
+  };
+
+  const filteredData = data?.filter(
+    (item) => !DeleteProducts.includes(item.id)
+  );
+  // console.log(filteredData);
+  const handleProductUpdate = (data, id) => {
+    setIsModalOpen(data);
+    setSelectedProductId(id);
+    console.log(id);
+  };
+
+  const handleClickOutsideModal = (e) => {
+    if (e.target.id === "modal-background") {
+      setIsModalOpen(false);
+    }
+  };
 
   if (isError) return <div>Error loading data.</div>;
   if (!data) {
@@ -32,6 +59,7 @@ function ProductList({ heading, category }) {
       </div>
     );
   }
+
   return (
     <div className="">
       <h1 className="capitalize px-20 whitespace-nowrap flex justify-center text-3xl font-bold">
@@ -63,17 +91,33 @@ function ProductList({ heading, category }) {
             },
           }}
         >
-          {data.map((data, index) => (
+          {filteredData.map((data, index) => (
             <>
               <SwiperSlide className=" max-md:flex max-md:items-center max-md:justify-center ">
-                <Card data={data} key={index} />
+                <Card
+                  data={data}
+                  key={index}
+                  handleDelete={handleDelete}
+                  handleProductUpdate={handleProductUpdate}
+                />
               </SwiperSlide>
             </>
           ))}
-
+          <SwiperSlide className="flex items-center">
+            <AddNewProductCard />
+          </SwiperSlide>
           <div className="autoplay-progress" slot="container-end"></div>
         </Swiper>
       </ul>
+      {/* model */}
+      {isModalOpen ? (
+        <ProductModel
+          handleClickOutsideModal={handleClickOutsideModal}
+          selectedProductId={selectedProductId}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

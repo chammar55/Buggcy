@@ -7,6 +7,7 @@ import { TailSpin } from "react-loader-spinner"; // Import the spinner
 
 function Home() {
   const { data, error } = useSWR(`products/categories`);
+
   console.log(data);
   if (error) return <div>Error loading data.</div>;
   if (!data) {

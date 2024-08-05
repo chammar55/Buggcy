@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "./card.css";
+
 import Rating from "../Ratings/Rating";
 import { Link } from "react-router-dom";
 import useCartStore from "../../Hooks/useCart";
+import ProductModel from "../ProductModel/ProductModel";
 const fallbackImage = "path/to/fallback/image.jpg"; // if image from api not loaded
 
-const Card = ({ data }) => {
+const Card = ({ data, handleDelete, handleProductUpdate }) => {
   const { userdata, addToCart } = useCartStore();
   const [isDisabled, setIsDisabled] = useState(false);
+  const [DeleteProducts, setDeleteProducts] = useState([]);
 
   useEffect(() => {
     // Check if the item is already in the cart
@@ -21,54 +23,100 @@ const Card = ({ data }) => {
     setIsDisabled(true);
     // Add your logic for adding to cart here
   };
+
   return (
-    <Link className="" to={`/ProductDetailsPage/${data.id}`}>
-      <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md w-64 h-[400px] m-4 p-5 flex flex-col items-center justify-start relative">
-        {/* img div */}
-        <div className="flex items-center justify-center h-[50%]">
-          <img
-            src={`${data.image}`}
-            alt="image"
-            className="w-full max-h-[200px] object-contain transition-transform duration-200 hover:scale-110"
-            onError={(e) => (e.target.src = fallbackImage)}
-          />
-        </div>
+    <div className="relative group flex flex-col items-center overflow-hidden ">
+      <Link className="" to={`/ProductDetailsPage/${data.id}`}>
+        <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md w-64 h-[400px] m-4 p-5 flex flex-col items-center justify-start relative ">
+          {/* img div */}
+          <div className="flex items-center justify-center h-[50%]">
+            <img
+              src={`${data.image}`}
+              alt="image"
+              className="w-full max-h-[200px] object-contain transition-transform duration-200 hover:scale-110"
+              onError={(e) => (e.target.src = fallbackImage)}
+            />
+          </div>
 
-        <div className="absolute bottom-0 p-4 flex flex-col gap-2">
-          <Link to={`/ProductDetailsPage/${data.id}`}>
-            <div className="flex flex-col ">
-              <p className="text-[18px] font-bold">{`$ ${data.price}`}</p>
-              <h3 className="text-[1.2em] mb-[8px]">
-                {data.title.slice(0, 30) + "..."}
-              </h3>
+          <div className="absolute bottom-0 p-4 flex flex-col gap-2">
+            <Link to={`/ProductDetailsPage/${data.id}`}>
+              <div className="flex flex-col ">
+                <p className="text-[18px] font-bold">{`$ ${data.price}`}</p>
+                <h3 className="text-[1.2em] mb-[8px]">
+                  {data.title.slice(0, 30) + "..."}
+                </h3>
 
-              <div className="flex">
-                <div className="flex gap-5">
-                  <Rating rating={data.rating.rate} /> {data.rating.rate}
+                <div className="flex">
+                  <div className="flex gap-5">
+                    <Rating rating={data.rating.rate} /> {data.rating.rate}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-          <Link to={isDisabled ? "/CartPage" : ""}>
-            <div
-              className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
-                isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
-              }`}
-              onClick={() => handleClick()}
-              style={{ pointerEvents: isDisabled ? "none" : "auto" }}
-            >
-              {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
-              <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
-              {isDisabled ? (
-                <ion-icon name="arrow-forward-outline"></ion-icon>
-              ) : (
-                ""
-              )}
-            </div>
-          </Link>
+            </Link>
+            <Link to={isDisabled ? "/CartPage" : ""}>
+              <div
+                className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
+                  isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
+                }`}
+                onClick={() => handleClick()}
+                style={{ pointerEvents: isDisabled ? "none" : "auto" }}
+              >
+                {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
+                <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
+                {isDisabled ? (
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                ) : (
+                  ""
+                )}
+              </div>
+            </Link>
+          </div>
         </div>
+      </Link>
+      <div class=" z-10 absolute top-4 -right-8 sm:top-8 sm:-right-8 group-hover:right-4 sm:group-hover:right-8 transition-all duration-300 flex flex-col gap-4">
+        <Link
+          class="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
+          onClick={() => handleProductUpdate(true, data.id)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-pencil stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
+          >
+            <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path>
+            <path d="m15 5 4 4"></path>
+          </svg>
+        </Link>
+        <button
+          class="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
+          onClick={() => handleDelete(data.id)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-trash   stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
+          >
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          </svg>
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
