@@ -1,20 +1,20 @@
 // Stickiy Navbar *********************************
-window.onscroll = function () {
-  checkSticky();
-};
+// window.onscroll = function () {
+//   checkSticky();
+// };
 
-var stickyDiv = document.getElementById("stickyDiv");
-var stickyPoint = 100;
+// var stickyDiv = document.getElementById("stickyDiv");
+// var stickyPoint = 100;
 
-function checkSticky() {
-  if (window.pageYOffset > stickyPoint) {
-    stickyDiv.classList.add("sticky");
-    // stickyDiv.style.backgroundColor = "#dfdfdf";
-  } else {
-    stickyDiv.classList.remove("sticky");
-    stickyDiv.style.backgroundColor = "white";
-  }
-}
+// function checkSticky() {
+//   if (window.pageYOffset > stickyPoint) {
+//     stickyDiv.classList.add("sticky");
+//     // stickyDiv.style.backgroundColor = "#dfdfdf";
+//   } else {
+//     stickyDiv.classList.remove("sticky");
+//     stickyDiv.style.backgroundColor = "white";
+//   }
+// }
 
 // *********************** selecting color and assigning to circles *********************************8
 const storedValue = localStorage.getItem("allowDuplicates");
@@ -41,19 +41,19 @@ function applyColor(element, index) {
     elementColorMap.set(element, selectedColor);
   }
 
-  // console.log(rowCircleColors);
+  console.log(rowCircleColors);
 }
 
 // Show Rules *********************************************************
-let rulee = (document.querySelector(".rules").style.display = "none");
-document.querySelector(".showRules").addEventListener("click", function () {
-  let rulee = document.querySelector(".rules");
-  if (rulee.style.display === "none" || rulee.style.display === " ") {
-    rulee.style.display = "block";
-  } else {
-    rulee.style.display = "none";
-  }
-});
+// let rulee = (document.querySelector(".rules").style.display = "none");
+// document.querySelector(".showRules").addEventListener("click", function () {
+//   let rulee = document.querySelector(".rules");
+//   if (rulee.style.display === "none" || rulee.style.display === " ") {
+//     rulee.style.display = "block";
+//   } else {
+//     rulee.style.display = "none";
+//   }
+// });
 
 // **************************check button***************************************
 function clickBtn(num) {
@@ -176,11 +176,13 @@ function getRandomColor() {
 
 // ********** Generate solution/ secret key *******************************************************
 var secretCombination = [];
+
 function generateRandomCombination() {
   const colors = ["red", "green", "blue", "yellow", "purple"];
   if (allowDuplicates) {
     for (let i = 0; i < 4; i++) {
       secretCombination.push(getRandomColor());
+      console.log("hello");
     }
   } else {
     while (secretCombination.length < 4) {
