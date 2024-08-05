@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useCartStore from "../../Hooks/useCart";
 import { Link } from "react-router-dom";
-import "./CartPage.css";
+import Cart from "../../Components/Cart/Cart";
 
 function CartPage() {
   const { userdata, removeFromCart, updateQuantity, updateCheckoutData } =
@@ -69,8 +69,6 @@ function CartPage() {
   // Calculate tax (5% of total price)
   const tax = (totalPrice + shipping) * 0.05;
 
-  // Calculate final total price
-  // const finalTotalPrice = (totalPrice + shipping + tax) * (1 - discount);
   // Calculate discount amount
   const discountAmount = (totalPrice + shipping + tax) * discount;
 
@@ -109,105 +107,7 @@ function CartPage() {
               <p>There are no items in this cart</p>
             </div>
           ) : (
-            userdata.map((item) => (
-              <div key={item.id}>
-                <div className="hidden md:flex justify-between my-9">
-                  <div className="flex gap-2 w-[50%]">
-                    <img
-                      className="w-24 h-auto flex1"
-                      src={`${item.image}`}
-                      alt="image"
-                    />
-                    <div className="flex flex-1 flex-col justify-between">
-                      <div className="text-[4vw] md:text-sm font-bold">
-                        {item.title}
-                      </div>
-                      <div className="capitalize text-black-500 text-md">
-                        {item.category}
-                      </div>
-                      <p
-                        className="cursor-pointer text-sm w-fit text-red-500 flex items-center"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        <ion-icon name="trash-outline"></ion-icon>
-                        Remove
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <ion-icon
-                      onClick={() => handleDecrement(item.id, item.quantity)}
-                      className="cursor-pointer"
-                      name="remove-outline"
-                    ></ion-icon>
-                    <input
-                      className="w-10 h-7 border text-md text-center"
-                      value={item.quantity}
-                      type="number"
-                      onChange={(e) => handleChange(item.id, e)}
-                    />
-                    <ion-icon
-                      onClick={() => handleIncrement(item.id, item.quantity)}
-                      className="cursor-pointer"
-                      name="add-outline"
-                    ></ion-icon>
-                  </div>
-                  <div className="flex items-center font-bold">
-                    ${item.price}
-                  </div>
-                  <div className="flex items-center font-bold">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </div>
-                </div>
-
-                <div className="flex gap-3 md:hidden my-9">
-                  <img
-                    className="w-[23vw] flex1"
-                    src={`${item.image}`}
-                    alt="image"
-                  />
-                  <div className="flex flex-col gap-1 justify-around flex-1">
-                    <div className="text-[4vw] md:text-sm font-bold">
-                      {item.title}
-                    </div>
-                    <div className="flex justify-between w-full">
-                      <div className="text-[4vw] flex items-center font-bold">
-                        ${(item.price * item.quantity).toFixed(2)}
-                      </div>
-                      <div className="flex gap-2 items-center">
-                        <ion-icon
-                          onClick={() =>
-                            handleDecrement(item.id, item.quantity)
-                          }
-                          className="cursor-pointer"
-                          name="remove-outline"
-                        ></ion-icon>
-                        <input
-                          className="w-[7vw] h-[5vw] text-[3vw] border text-center"
-                          value={item.quantity}
-                          type="number"
-                          onChange={(e) => handleChange(item.id, e)}
-                        />
-                        <ion-icon
-                          onClick={() =>
-                            handleIncrement(item.id, item.quantity)
-                          }
-                          className="cursor-pointer"
-                          name="add-outline"
-                        ></ion-icon>
-                      </div>
-                    </div>
-                    <p
-                      className="cursor-pointer text-[3vw] w-fit text-red-500 flex items-center"
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      <ion-icon name="trash-outline"></ion-icon>
-                      Remove
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))
+            userdata.map((item) => <Cart item={item} />)
           )}
         </div>
         <div>
@@ -228,10 +128,6 @@ function CartPage() {
         </div>
 
         <div className="flex flex-col justify-between border-b-[2px] pb-5 h-[200px] text-md my-3">
-          {/* <div className="flex justify-between">
-            <h3>Item {userdata.length}</h3>
-            <h3>${totalPrice.toFixed(2)}</h3>
-          </div> */}
           <div className="flex flex-col gap-3">
             <h3 className="text-xl">Shipping</h3>
             <select
@@ -296,11 +192,6 @@ function CartPage() {
           style={{ height: "80%" }}
         >
           <div className="flex flex-col gap-3 justify-between  pb-5 h-[200px] text-md my-3">
-            {/* <div className="flex justify-between">
-            <h3>Item {userdata.length}</h3>
-            <h3>${totalPrice.toFixed(2)}</h3>
-          </div> */}
-
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center mb-5 text-2xl">
                 <h3 className="text-xl">Shipping</h3>
@@ -348,7 +239,7 @@ function CartPage() {
           <div
             // onClick={() => setIsOpen(!isOpen)}
             onClick={() => handlePopUp()}
-            className="flex gap-2 items-center border rounded p-1"
+            className="flex gap-2 items-center  rounded p-1"
           >
             <div className="flex flex-col ">
               <div className="flex gap-1">

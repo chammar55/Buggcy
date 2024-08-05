@@ -22,13 +22,10 @@ const Card = ({ data }) => {
     // Add your logic for adding to cart here
   };
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md w-64 h-[400px] m-4 p-5 flex flex-col items-center justify-start relative">
-      <Link
-        className="flex items-center h-[50%]"
-        to={`/ProductDetailsPage/${data.id}`}
-      >
+    <Link className="" to={`/ProductDetailsPage/${data.id}`}>
+      <div className="border border-gray-300 rounded-lg overflow-hidden shadow-md w-64 h-[400px] m-4 p-5 flex flex-col items-center justify-start relative">
         {/* img div */}
-        <div className="flex items-center justify-center h-[100%]">
+        <div className="flex items-center justify-center h-[50%]">
           <img
             src={`${data.image}`}
             alt="image"
@@ -36,42 +33,42 @@ const Card = ({ data }) => {
             onError={(e) => (e.target.src = fallbackImage)}
           />
         </div>
-      </Link>
 
-      <div className="absolute bottom-0 p-4 flex flex-col gap-2">
-        <Link to={`/ProductDetailsPage/${data.id}`}>
-          <div className="flex flex-col ">
-            <p className="text-[18px] font-bold">{`$ ${data.price}`}</p>
-            <h3 className="text-[1.2em] mb-[8px]">
-              {data.title.slice(0, 30) + "..."}
-            </h3>
+        <div className="absolute bottom-0 p-4 flex flex-col gap-2">
+          <Link to={`/ProductDetailsPage/${data.id}`}>
+            <div className="flex flex-col ">
+              <p className="text-[18px] font-bold">{`$ ${data.price}`}</p>
+              <h3 className="text-[1.2em] mb-[8px]">
+                {data.title.slice(0, 30) + "..."}
+              </h3>
 
-            <div className="flex">
-              <div className="flex gap-5">
-                <Rating rating={data.rating.rate} /> {data.rating.rate}
+              <div className="flex">
+                <div className="flex gap-5">
+                  <Rating rating={data.rating.rate} /> {data.rating.rate}
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
-        <Link to={isDisabled ? "/CartPage" : ""}>
-          <div
-            className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
-              isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
-            }`}
-            onClick={() => handleClick()}
-            style={{ pointerEvents: isDisabled ? "none" : "auto" }}
-          >
-            {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
-            <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
-            {isDisabled ? (
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            ) : (
-              ""
-            )}
-          </div>
-        </Link>
+          </Link>
+          <Link to={isDisabled ? "/CartPage" : ""}>
+            <div
+              className={`flex items-center justify-center text-white gap-2 h-8 p-2 cursor-pointer ${
+                isDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-red-500"
+              }`}
+              onClick={() => handleClick()}
+              style={{ pointerEvents: isDisabled ? "none" : "auto" }}
+            >
+              {isDisabled ? "" : <ion-icon name="add-outline"></ion-icon>}
+              <p>{isDisabled ? "Go to Cart" : "Add to Cart"}</p>
+              {isDisabled ? (
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              ) : (
+                ""
+              )}
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Hero from "../../Components/Hero/Hero";
 import ProductList from "../../Components/ProductList/ProductList";
-// import { categoryNames } from "./categoryNames";
 import useSWR from "swr";
 import { TailSpin } from "react-loader-spinner"; // Import the spinner
 
@@ -57,15 +56,6 @@ function Home() {
             <ProductList heading={data} category={data} />
           </div>
         ))}
-        {/* <div id="women's-clothing" className="my-5">
-          <ProductList heading="Women's Clothing" category="women's clothing" />
-        </div>
-        <div id="jewelery" className="my-5">
-          <ProductList heading="Jewelery" category="jewelery" />
-        </div>
-        <div id="electronics" className="my-5">
-          <ProductList heading="Electronics" category="electronics" />
-        </div> */}
       </section>
     </div>
   );

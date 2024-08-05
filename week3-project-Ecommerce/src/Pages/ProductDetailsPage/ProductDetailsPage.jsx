@@ -15,7 +15,6 @@ function ProductDetailsPage() {
   const handleClick = () => {
     addToCart(data);
     setIsDisabled(true);
-    // Add your logic for adding to cart here
   };
 
   useEffect(() => {
@@ -57,7 +56,6 @@ function ProductDetailsPage() {
             <div className="flex gap-5">
               <p className="text-xl">Rating</p>
               <Rating rating={data.rating.rate} /> {data.rating.rate}
-              {/* <p className="text-xl ">Rating {data.rating.rate}</p> */}
             </div>
           </div>
           <h3 className="text-2xl font-bold">$ {data.price}</h3>
