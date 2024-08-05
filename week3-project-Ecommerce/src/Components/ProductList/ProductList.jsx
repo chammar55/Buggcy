@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,10 +15,23 @@ import AddNewProductCard from "../AddNewProductCard/AddNewProductCard";
 import ProductModel from "../ProductModel/ProductModel";
 
 function ProductList({ heading, category }) {
-  const { data, isLoading, isError } = useProducts({ category });
+  const { data: initialData, isLoading, isError } = useProducts({ category });
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (initialData) {
+      setData(initialData);
+    }
+  }, [initialData]);
+
+  console.log(data);
+  // const { data: initialData, isLoading, isError } = useProducts({ category });
+  // const [data, setData] = useState(initialData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState();
   const [DeleteProducts, setDeleteProducts] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [addNewProduct, setAddNewProduct] = useState(false);
 
   const handleDelete = (id) => {
     const delArray = [...DeleteProducts, id];
@@ -30,16 +43,19 @@ function ProductList({ heading, category }) {
     (item) => !DeleteProducts.includes(item.id)
   );
   // console.log(filteredData);
-  const handleProductUpdate = (data, id) => {
-    setIsModalOpen(data);
-    setSelectedProductId(id);
-    console.log(id);
+  const handleProductUpdate = (data1, cardData) => {
+    setIsModalOpen(data1);
+    setSelectedProduct(cardData);
   };
 
   const handleClickOutsideModal = (e) => {
     if (e.target.id === "modal-background") {
       setIsModalOpen(false);
     }
+  };
+
+  const handleHideModel = (data) => {
+    setIsModalOpen(data);
   };
 
   if (isError) return <div>Error loading data.</div>;
@@ -59,6 +75,45 @@ function ProductList({ heading, category }) {
       </div>
     );
   }
+
+  const handleSubmit = async (values) => {
+    console.log("value", values);
+    if (addNewProduct) {
+      const response = await axios.post(
+        `https://fakestoreapi.com/products`,
+        values
+      );
+      const updatedProduct = {
+        ...response.data,
+        rating: { rate: 0, count: 0 },
+        category: category,
+      };
+      console.log(updatedProduct);
+      setData((prevProducts) => [...prevProducts, updatedProduct]);
+    } else {
+      const response = await axios.put(
+        `https://fakestoreapi.com/products/${selectedProduct.id}`,
+        values
+      );
+      const updatedProduct = response.data;
+      setData((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === updatedProduct.id
+            ? { ...product, ...updatedProduct }
+            : product
+        )
+      );
+    }
+    handleHideModel(false);
+  };
+
+  const handleAddNewProduct = (data) => {
+    handleHideModel(data);
+    setAddNewProduct(data);
+  };
+  const handleupdateProduct = (data) => {
+    setAddNewProduct(data);
+  };
 
   return (
     <div className="">
@@ -99,22 +154,31 @@ function ProductList({ heading, category }) {
                   key={index}
                   handleDelete={handleDelete}
                   handleProductUpdate={handleProductUpdate}
+                  handleupdateProduct={handleupdateProduct}
                 />
               </SwiperSlide>
             </>
           ))}
           <SwiperSlide className="flex items-center">
-            <AddNewProductCard />
+            <AddNewProductCard handleAddNewProduct={handleAddNewProduct} />
           </SwiperSlide>
           <div className="autoplay-progress" slot="container-end"></div>
         </Swiper>
       </ul>
       {/* model */}
       {isModalOpen ? (
-        <ProductModel
-          handleClickOutsideModal={handleClickOutsideModal}
-          selectedProductId={selectedProductId}
-        />
+        <div
+          id="modal-background"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10"
+          onClick={handleClickOutsideModal}
+        >
+          <ProductModel
+            selectedProduct={selectedProduct}
+            handleHideModel={handleHideModel}
+            handleSubmit={handleSubmit}
+            addNewProduct={addNewProduct}
+          />
+        </div>
       ) : (
         ""
       )}

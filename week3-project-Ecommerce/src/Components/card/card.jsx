@@ -6,7 +6,12 @@ import useCartStore from "../../Hooks/useCart";
 import ProductModel from "../ProductModel/ProductModel";
 const fallbackImage = "path/to/fallback/image.jpg"; // if image from api not loaded
 
-const Card = ({ data, handleDelete, handleProductUpdate }) => {
+const Card = ({
+  data,
+  handleDelete,
+  handleProductUpdate,
+  handleupdateProduct,
+}) => {
   const { userdata, addToCart } = useCartStore();
   const [isDisabled, setIsDisabled] = useState(false);
   const [DeleteProducts, setDeleteProducts] = useState([]);
@@ -22,6 +27,11 @@ const Card = ({ data, handleDelete, handleProductUpdate }) => {
     // console.log(data);
     setIsDisabled(true);
     // Add your logic for adding to cart here
+  };
+
+  const handleCardProduct = () => {
+    handleProductUpdate(true, data);
+    handleupdateProduct(false);
   };
 
   return (
@@ -76,7 +86,7 @@ const Card = ({ data, handleDelete, handleProductUpdate }) => {
       <div class=" z-10 absolute top-4 -right-8 sm:top-8 sm:-right-8 group-hover:right-4 sm:group-hover:right-8 transition-all duration-300 flex flex-col gap-4">
         <Link
           class="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
-          onClick={() => handleProductUpdate(true, data.id)}
+          onClick={() => handleCardProduct()}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

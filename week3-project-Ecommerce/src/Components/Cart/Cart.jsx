@@ -1,6 +1,27 @@
 import React from "react";
+import useCartStore from "../../Hooks/useCart";
 
 function Cart({ item }) {
+  const { userdata, removeFromCart, updateQuantity, updateCheckoutData } =
+    useCartStore();
+  const handleIncrement = (id, currentQuantity) => {
+    if (currentQuantity < 10) {
+      updateQuantity(id, currentQuantity + 1);
+    }
+  };
+
+  const handleDecrement = (id, currentQuantity) => {
+    if (currentQuantity > 1) {
+      updateQuantity(id, currentQuantity - 1);
+    }
+  };
+
+  const handleChange = (id, e) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+      updateQuantity(id, value);
+    }
+  };
   return (
     <div>
       <div key={item.id}>
