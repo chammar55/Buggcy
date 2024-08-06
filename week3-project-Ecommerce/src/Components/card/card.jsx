@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import useCartStore from "../../Hooks/useCart";
 import ProductModel from "../ProductModel/ProductModel";
 import axios from "axios";
+import { addToCartService } from "../../Services/cartService";
+
 const fallbackImage = "path/to/fallback/image.jpg"; // if image from api not loaded
 
 const Card = ({
@@ -23,25 +25,12 @@ const Card = ({
     setIsDisabled(isItemInCart);
   }, [userdata, data.id]);
 
-  const getCurrentDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
-    const day = String(today.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
   const handleClick = async () => {
     addToCart(data);
     // console.log(data);
     setIsDisabled(true);
     // Add your logic for adding to cart here
-    const response = await axios.post(`https://fakestoreapi.com/carts`, {
-      userId: 1,
-      date: getCurrentDate(),
-      products: [{ productId: data.id, quantity: 1 }],
-    });
-
+    const response = await addToCartService(data);
     console.log(response.data);
   };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import useCartStore from "../../Hooks/useCart";
 import axios from "axios";
+import { removeFromCartService } from "../../Services/cartService";
 
 function Cart({ item }) {
   const { userdata, removeFromCart, updateQuantity, updateCheckoutData } =
@@ -27,10 +28,8 @@ function Cart({ item }) {
 
   const handleDelete = async (id) => {
     removeFromCart(item.id);
-    const response = await axios.delete("https://fakestoreapi.com/carts/5", {
-      deleFake: userdata.filter((dat) => dat.id !== id),
-    });
-    console.log(response);
+    const response = await removeFromCartService(userdata, updateQuantity);
+    console.log(response.data);
   };
   return (
     <div>
