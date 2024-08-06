@@ -24,7 +24,7 @@ function ProductList({ heading, category }) {
     }
   }, [initialData]);
 
-  console.log(data);
+  // console.log(data);
   // const { data: initialData, isLoading, isError } = useProducts({ category });
   // const [data, setData] = useState(initialData);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,15 +33,6 @@ function ProductList({ heading, category }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [addNewProduct, setAddNewProduct] = useState(false);
 
-  const handleDelete = (id) => {
-    const delArray = [...DeleteProducts, id];
-    setDeleteProducts(delArray);
-    // handleDataFromCard(delArray);
-  };
-
-  const filteredData = data?.filter(
-    (item) => !DeleteProducts.includes(item.id)
-  );
   // console.log(filteredData);
   const handleProductUpdate = (data1, cardData) => {
     setIsModalOpen(data1);
@@ -76,6 +67,22 @@ function ProductList({ heading, category }) {
     );
   }
 
+  // delete products *****************************
+  const handleDelete = async (id) => {
+    const response = await axios.delete(
+      `https://fakestoreapi.com/products/${id}`
+    );
+    const updatedProducts = response.data;
+
+    const delArray = [...DeleteProducts, updatedProducts.id];
+    setDeleteProducts(delArray);
+    // handleDataFromCard(delArray);
+  };
+  const filteredData = data?.filter(
+    (item) => !DeleteProducts.includes(item.id)
+  );
+
+  // Add  products **********************************
   const handleSubmit = async (values) => {
     console.log("value", values);
     if (addNewProduct) {
@@ -91,6 +98,7 @@ function ProductList({ heading, category }) {
       console.log(updatedProduct);
       setData((prevProducts) => [...prevProducts, updatedProduct]);
     } else {
+      // update Product ********************************
       const response = await axios.put(
         `https://fakestoreapi.com/products/${selectedProduct.id}`,
         values

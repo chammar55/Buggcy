@@ -4,13 +4,7 @@ import * as Yup from "yup";
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 
-function ProductModel({
-  handleClickOutsideModal,
-  handleHideModel,
-  selectedProduct,
-  handleSubmit,
-  addNewProduct,
-}) {
+function ProductModel({ selectedProduct, handleSubmit, addNewProduct }) {
   // Initial form values
   const initialValues = {
     title: "",
@@ -35,7 +29,9 @@ function ProductModel({
         <Formik
           initialValues={addNewProduct ? initialValues : selectedProduct}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values) => {
+            handleSubmit(values);
+          }}
           // enableReinitialize={true}
         >
           {() => (

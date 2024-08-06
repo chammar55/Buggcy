@@ -1,9 +1,11 @@
 import React from "react";
 import useCartStore from "../../Hooks/useCart";
+import axios from "axios";
 
 function Cart({ item }) {
   const { userdata, removeFromCart, updateQuantity, updateCheckoutData } =
     useCartStore();
+
   const handleIncrement = (id, currentQuantity) => {
     if (currentQuantity < 10) {
       updateQuantity(id, currentQuantity + 1);
@@ -22,11 +24,22 @@ function Cart({ item }) {
       updateQuantity(id, value);
     }
   };
+
+  const handleDelete = async (id) => {
+    const response = await axios.delete("https://fakestoreapi.com/carts/5", {
+      deleFake: userdata.filter((dat) => dat.id !== id),
+    });
+    console.log(response);
+
+    if (response) {
+      removeFromCart(item.id);
+    }
+  };
   return (
     <div>
       <div key={item.id}>
         {/* large screen cart ************************************* */}
-        <div className=" md:flex justify-between   my-9">
+        <div className=" md:flex justify-between hover:bg-neutral-100 p-2 rounded-lg md:h-[130px]  my-9">
           <div className="flex items-center gap-2  md:w-[50%]">
             <img
               className="w-[23vw]  md:w-24 h-[90%] object-contain "
@@ -65,7 +78,7 @@ function Cart({ item }) {
               </div>
               <p
                 className="cursor-pointer text-sm w-fit text-red-500 flex items-center"
-                onClick={() => removeFromCart(item.id)}
+                onClick={() => handleDelete(item.id)}
               >
                 <ion-icon name="trash-outline"></ion-icon>
                 Remove
@@ -93,7 +106,7 @@ function Cart({ item }) {
           <div className="hidden md:flex items-center font-bold">
             ${item.price}
           </div>
-          <div className="hidden md:flex items-center font-bold">
+          <div className="hidden w-[100px] md:flex items-center font-bold">
             ${(item.price * item.quantity).toFixed(2)}
           </div>
         </div>

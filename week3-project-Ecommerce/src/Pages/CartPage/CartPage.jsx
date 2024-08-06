@@ -99,7 +99,7 @@ function CartPage() {
           </span>
           <span className="hidden md:block">Quantity</span>
           <span className="hidden md:block">Price</span>
-          <span className="hidden md:block">Total</span>
+          <span className="hidden  w-[60px] md:flex justify-start">Total</span>
         </div>
         <div className="my-6">
           {userdata.length == 0 ? (
@@ -243,7 +243,7 @@ function CartPage() {
           >
             <div className="flex flex-col ">
               <div className="flex gap-1">
-                <h3 className="text-md font-bold">Total Cost:</h3>
+                <h3 className="text-md font-bold ">Total Cost:</h3>
                 <h3 className="text-md">${finalTotalPrice.toFixed(2)}</h3>
               </div>
               <div className="flex  gap-1">

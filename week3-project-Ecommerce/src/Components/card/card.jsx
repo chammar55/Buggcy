@@ -4,6 +4,7 @@ import Rating from "../Ratings/Rating";
 import { Link } from "react-router-dom";
 import useCartStore from "../../Hooks/useCart";
 import ProductModel from "../ProductModel/ProductModel";
+import axios from "axios";
 const fallbackImage = "path/to/fallback/image.jpg"; // if image from api not loaded
 
 const Card = ({
@@ -22,16 +23,33 @@ const Card = ({
     setIsDisabled(isItemInCart);
   }, [userdata, data.id]);
 
-  const handleClick = () => {
-    addToCart(data);
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleClick = async () => {
+    const response = await axios.post(`https://fakestoreapi.com/carts`, {
+      userId: 1,
+      date: getCurrentDate(),
+      products: [{ productId: data.id, quantity: 1 }],
+    });
+
+    console.log(response.data);
+    if (response) {
+      addToCart(data);
+    }
     // console.log(data);
     setIsDisabled(true);
     // Add your logic for adding to cart here
   };
 
   const handleCardProduct = () => {
-    handleProductUpdate(true, data);
-    handleupdateProduct(false);
+    handleProductUpdate(true, data); //taking card data and giving it to product model
+    handleupdateProduct(false); // booolean to apply updateProduct logic
   };
 
   return (
@@ -43,7 +61,7 @@ const Card = ({
             <img
               src={`${data.image}`}
               alt="image"
-              className="w-full max-h-[200px] object-contain transition-transform duration-200 hover:scale-110"
+              className="w-full max-h-[180px] object-contain transition-transform duration-200 hover:scale-110"
               onError={(e) => (e.target.src = fallbackImage)}
             />
           </div>
@@ -83,9 +101,9 @@ const Card = ({
           </div>
         </div>
       </Link>
-      <div class=" z-10 absolute top-4 -right-8 sm:top-8 sm:-right-8 group-hover:right-4 sm:group-hover:right-8 transition-all duration-300 flex flex-col gap-4">
+      <div className=" z-10 absolute top-4 -right-8 sm:top-8 sm:-right-8 group-hover:right-4 sm:group-hover:right-8 transition-all duration-300 flex flex-col gap-4">
         <Link
-          class="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
+          className="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
           onClick={() => handleCardProduct()}
         >
           <svg
@@ -95,17 +113,17 @@ const Card = ({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-pencil stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-pencil stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
           >
             <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path>
             <path d="m15 5 4 4"></path>
           </svg>
         </Link>
         <button
-          class="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
+          className="w-6 h-6 sm:w-8 sm:h-8 bg-black rounded-lg"
           onClick={() => handleDelete(data.id)}
         >
           <svg
@@ -115,10 +133,10 @@ const Card = ({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-trash   stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-trash   stroke-white p-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
           >
             <path d="M3 6h18"></path>
             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
