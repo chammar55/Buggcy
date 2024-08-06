@@ -26,6 +26,8 @@ function ProductDetailsPage() {
   }, [initialData]);
 
   const handleClick = async () => {
+    addToCart(data);
+    setIsDisabled(true);
     const response = await axios.post(`https://fakestoreapi.com/carts`, {
       userId: 1,
       date: new Date().toISOString(),
@@ -33,11 +35,6 @@ function ProductDetailsPage() {
     });
 
     console.log(response.data);
-
-    if (response) {
-      addToCart(data);
-    }
-    setIsDisabled(true);
   };
 
   useEffect(() => {

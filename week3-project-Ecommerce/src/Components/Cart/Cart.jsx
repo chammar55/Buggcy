@@ -26,14 +26,11 @@ function Cart({ item }) {
   };
 
   const handleDelete = async (id) => {
+    removeFromCart(item.id);
     const response = await axios.delete("https://fakestoreapi.com/carts/5", {
       deleFake: userdata.filter((dat) => dat.id !== id),
     });
     console.log(response);
-
-    if (response) {
-      removeFromCart(item.id);
-    }
   };
   return (
     <div>

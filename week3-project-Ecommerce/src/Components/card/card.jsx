@@ -32,6 +32,10 @@ const Card = ({
   };
 
   const handleClick = async () => {
+    addToCart(data);
+    // console.log(data);
+    setIsDisabled(true);
+    // Add your logic for adding to cart here
     const response = await axios.post(`https://fakestoreapi.com/carts`, {
       userId: 1,
       date: getCurrentDate(),
@@ -39,12 +43,6 @@ const Card = ({
     });
 
     console.log(response.data);
-    if (response) {
-      addToCart(data);
-    }
-    // console.log(data);
-    setIsDisabled(true);
-    // Add your logic for adding to cart here
   };
 
   const handleCardProduct = () => {
