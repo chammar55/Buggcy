@@ -17,7 +17,7 @@ model User {
   password       String
   age            Int
   gender         String
-  profilePicture String
+  profilePicUrl  String
   role           Role     @default(USER)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt

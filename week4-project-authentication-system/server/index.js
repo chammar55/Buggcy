@@ -19,6 +19,26 @@ app.use(rateLimiter);
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
 
+// app.post("/users", async (req, res) => {
+//   const { email, password, name, age, gender, profilePicUrl } = req.body;
+//   try {
+//     const user = await prisma.user.create({
+//       data: {
+//         name,
+//         email,
+//         password,
+//         age,
+//         gender,
+//         profilePicUrl,
+//       },
+//     });
+//     res.status(201).json(user);
+//   } catch (error) {
+//     console.error("Error creating user:", error);
+//     res.status(500).json({ error: "Error creating user" });
+//   }
+// });
+
 const port = config.port;
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { prisma } from "../prisma.js";
+import { prisma } from "../myPrisma.js";
 
 export const signUp = async (req, res) => {
   const { email, password, name, age, gender, profilePicUrl } = req.body;
